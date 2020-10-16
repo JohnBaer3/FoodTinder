@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		863116196F3B38766D24DF3D /* Pods_FoodTinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4A8FE5742141B04E3FA569 /* Pods_FoodTinderTests.framework */; };
+		A2EDD22E26695C3996F0FA24 /* Pods_FoodTinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCDD9602DB97351843B56FE /* Pods_FoodTinder.framework */; };
+		C4949F40FC1D3D67E71D7A3C /* Pods_FoodTinder_FoodTinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A7A70B0BD31554D45B0 /* Pods_FoodTinder_FoodTinderUITests.framework */; };
 		CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */; };
 		CB2431BD25393C4500BB1CF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */; };
 		CB2431BF25393C4500BB1CF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BE25393C4500BB1CF7 /* ViewController.swift */; };
@@ -16,6 +19,8 @@
 		CB2431CA25393C4500BB1CF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB2431C825393C4500BB1CF7 /* LaunchScreen.storyboard */; };
 		CB2431D525393C4600BB1CF7 /* FoodTinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431D425393C4600BB1CF7 /* FoodTinderTests.swift */; };
 		CB2431E025393C4600BB1CF7 /* FoodTinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431DF25393C4600BB1CF7 /* FoodTinderUITests.swift */; };
+		CB34C9F225393CA4003BB0C0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34C9F125393CA4003BB0C0 /* NetworkService.swift */; };
+		CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4564A253944C200BC9391 /* RestaurantModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		386C4FFD58B54F0282309272 /* Pods-FoodTinderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinderTests.release.xcconfig"; path = "Target Support Files/Pods-FoodTinderTests/Pods-FoodTinderTests.release.xcconfig"; sourceTree = "<group>"; };
+		6CCDD9602DB97351843B56FE /* Pods_FoodTinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96D39A4939F0E308A00CDA6D /* Pods-FoodTinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder.release.xcconfig"; path = "Target Support Files/Pods-FoodTinder/Pods-FoodTinder.release.xcconfig"; sourceTree = "<group>"; };
+		9A9F0A7A70B0BD31554D45B0 /* Pods_FoodTinder_FoodTinderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTinder_FoodTinderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5D5DB4EEF41CE81C2758CB4 /* Pods-FoodTinder-FoodTinderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder-FoodTinderUITests.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinder-FoodTinderUITests/Pods-FoodTinder-FoodTinderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB2431B725393C4500BB1CF7 /* FoodTinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +61,12 @@
 		CB2431DB25393C4600BB1CF7 /* FoodTinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2431DF25393C4600BB1CF7 /* FoodTinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTinderUITests.swift; sourceTree = "<group>"; };
 		CB2431E125393C4600BB1CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB34C9F125393CA4003BB0C0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CBB4564A253944C200BC9391 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		CC47428CFA59D71959CED97F /* Pods-FoodTinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinderTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinderTests/Pods-FoodTinderTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E8413CD14911D4236AB8F76A /* Pods-FoodTinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinder/Pods-FoodTinder.debug.xcconfig"; sourceTree = "<group>"; };
+		EB4A8FE5742141B04E3FA569 /* Pods_FoodTinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF06726A53964D88D43E095C /* Pods-FoodTinder-FoodTinderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder-FoodTinderUITests.release.xcconfig"; path = "Target Support Files/Pods-FoodTinder-FoodTinderUITests/Pods-FoodTinder-FoodTinderUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2EDD22E26695C3996F0FA24 /* Pods_FoodTinder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				863116196F3B38766D24DF3D /* Pods_FoodTinderTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +90,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4949F40FC1D3D67E71D7A3C /* Pods_FoodTinder_FoodTinderUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		238DA60407D6ABA4167C862B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6CCDD9602DB97351843B56FE /* Pods_FoodTinder.framework */,
+				9A9F0A7A70B0BD31554D45B0 /* Pods_FoodTinder_FoodTinderUITests.framework */,
+				EB4A8FE5742141B04E3FA569 /* Pods_FoodTinderTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CB2431AE25393C4500BB1CF7 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +114,8 @@
 				CB2431D325393C4600BB1CF7 /* FoodTinderTests */,
 				CB2431DE25393C4600BB1CF7 /* FoodTinderUITests */,
 				CB2431B825393C4500BB1CF7 /* Products */,
+				FC41A7773CAA48C4233316B9 /* Pods */,
+				238DA60407D6ABA4167C862B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +132,12 @@
 		CB2431B925393C4500BB1CF7 /* FoodTinder */ = {
 			isa = PBXGroup;
 			children = (
-				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
-				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
+				CB34C9F025393C92003BB0C0 /* Services */,
 				CB2431BE25393C4500BB1CF7 /* ViewController.swift */,
 				CB2431C025393C4500BB1CF7 /* Main.storyboard */,
+				CBB4564A253944C200BC9391 /* RestaurantModel.swift */,
+				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
+				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
 				CB2431C825393C4500BB1CF7 /* LaunchScreen.storyboard */,
 				CB2431CB25393C4500BB1CF7 /* Info.plist */,
@@ -131,6 +164,27 @@
 			path = FoodTinderUITests;
 			sourceTree = "<group>";
 		};
+		CB34C9F025393C92003BB0C0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CB34C9F125393CA4003BB0C0 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FC41A7773CAA48C4233316B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8413CD14911D4236AB8F76A /* Pods-FoodTinder.debug.xcconfig */,
+				96D39A4939F0E308A00CDA6D /* Pods-FoodTinder.release.xcconfig */,
+				B5D5DB4EEF41CE81C2758CB4 /* Pods-FoodTinder-FoodTinderUITests.debug.xcconfig */,
+				EF06726A53964D88D43E095C /* Pods-FoodTinder-FoodTinderUITests.release.xcconfig */,
+				CC47428CFA59D71959CED97F /* Pods-FoodTinderTests.debug.xcconfig */,
+				386C4FFD58B54F0282309272 /* Pods-FoodTinderTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB2431E425393C4600BB1CF7 /* Build configuration list for PBXNativeTarget "FoodTinder" */;
 			buildPhases = (
+				C35FF37F5ACEB6FE424F8511 /* [CP] Check Pods Manifest.lock */,
 				CB2431B325393C4500BB1CF7 /* Sources */,
 				CB2431B425393C4500BB1CF7 /* Frameworks */,
 				CB2431B525393C4500BB1CF7 /* Resources */,
+				46D7E4C8D6CEEC1FA7DE256C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB2431E725393C4600BB1CF7 /* Build configuration list for PBXNativeTarget "FoodTinderTests" */;
 			buildPhases = (
+				FF7B87AFD3D55922540E0856 /* [CP] Check Pods Manifest.lock */,
 				CB2431CC25393C4600BB1CF7 /* Sources */,
 				CB2431CD25393C4600BB1CF7 /* Frameworks */,
 				CB2431CE25393C4600BB1CF7 /* Resources */,
@@ -173,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB2431EA25393C4600BB1CF7 /* Build configuration list for PBXNativeTarget "FoodTinderUITests" */;
 			buildPhases = (
+				6417FB85ABB86A4D2CC62733 /* [CP] Check Pods Manifest.lock */,
 				CB2431D725393C4600BB1CF7 /* Sources */,
 				CB2431D825393C4600BB1CF7 /* Frameworks */,
 				CB2431D925393C4600BB1CF7 /* Resources */,
+				BBF11E94AA3C90CC26376300 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,14 +315,119 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		46D7E4C8D6CEEC1FA7DE256C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodTinder/Pods-FoodTinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodTinder/Pods-FoodTinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodTinder/Pods-FoodTinder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6417FB85ABB86A4D2CC62733 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodTinder-FoodTinderUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBF11E94AA3C90CC26376300 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodTinder-FoodTinderUITests/Pods-FoodTinder-FoodTinderUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodTinder-FoodTinderUITests/Pods-FoodTinder-FoodTinderUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodTinder-FoodTinderUITests/Pods-FoodTinder-FoodTinderUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C35FF37F5ACEB6FE424F8511 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodTinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF7B87AFD3D55922540E0856 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodTinderTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CB2431B325393C4500BB1CF7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB34C9F225393CA4003BB0C0 /* NetworkService.swift in Sources */,
 				CB2431BF25393C4500BB1CF7 /* ViewController.swift in Sources */,
 				CB2431C525393C4500BB1CF7 /* FoodTinder.xcdatamodeld in Sources */,
 				CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */,
+				CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */,
 				CB2431BD25393C4500BB1CF7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +601,7 @@
 		};
 		CB2431E525393C4600BB1CF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8413CD14911D4236AB8F76A /* Pods-FoodTinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +621,7 @@
 		};
 		CB2431E625393C4600BB1CF7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96D39A4939F0E308A00CDA6D /* Pods-FoodTinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -475,6 +641,7 @@
 		};
 		CB2431E825393C4600BB1CF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC47428CFA59D71959CED97F /* Pods-FoodTinderTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -497,6 +664,7 @@
 		};
 		CB2431E925393C4600BB1CF7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 386C4FFD58B54F0282309272 /* Pods-FoodTinderTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -519,6 +687,7 @@
 		};
 		CB2431EB25393C4600BB1CF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5D5DB4EEF41CE81C2758CB4 /* Pods-FoodTinder-FoodTinderUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -539,6 +708,7 @@
 		};
 		CB2431EC25393C4600BB1CF7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF06726A53964D88D43E095C /* Pods-FoodTinder-FoodTinderUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

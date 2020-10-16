@@ -7,14 +7,26 @@
 
 import UIKit
 import CoreData
+import Moya
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
+    let service = MoyaProvider<YelpService.BusinessesProvider>()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        service.request(.search(lat: 37.2638, long: -122.0230)){ (result) in
+            switch result{
+            case .success(let response):
+                print(try? JSONSerialization.jsonObject(with: response.data, options: []))
+            case .failure(let error):
+                print("error")
+            }
+        }
+        
         return true
     }
 
