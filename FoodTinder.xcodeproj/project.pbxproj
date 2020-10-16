@@ -135,7 +135,6 @@
 				CB34C9F025393C92003BB0C0 /* Services */,
 				CB2431BE25393C4500BB1CF7 /* ViewController.swift */,
 				CB2431C025393C4500BB1CF7 /* Main.storyboard */,
-				CBB4564A253944C200BC9391 /* RestaurantModel.swift */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
@@ -167,6 +166,7 @@
 		CB34C9F025393C92003BB0C0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CBB4564A253944C200BC9391 /* RestaurantModel.swift */,
 				CB34C9F125393CA4003BB0C0 /* NetworkService.swift */,
 			);
 			path = Services;
