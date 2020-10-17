@@ -7,31 +7,39 @@
 
 import UIKit
 import CoreData
-import Moya
+import MapKit
+import CoreLocation
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let service = MoyaProvider<YelpService.BusinessesProvider>()
-    let jsonDecoder = JSONDecoder()
+
+
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+    var locVal: CLLocationCoordinate2D? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        service.request(.search(lat: 37.2638, long: -122.0230)){ (result) in
-            switch result{
-            case .success(let response):
-                let root = try? self.jsonDecoder.decode(Root.self, from: response.data)
-                print(root)
-            case .failure(let error):
-                print("error")
-            }
-        }
-        
+        locationAuth()
         return true
     }
 
+    func locationAuth(){
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        locVal = locValue
+    }
+    
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
