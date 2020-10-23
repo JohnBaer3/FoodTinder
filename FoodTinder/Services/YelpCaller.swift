@@ -16,17 +16,17 @@ class YelpCaller{
     let service = MoyaProvider<YelpService.BusinessesProvider>()
     let jsonDecoder = JSONDecoder()
     let appD = AppDelegate()
+    var restaurants: [RestaurantListViewModel]? = nil
     
-    func yelpCall(){
+    func yelpCall(completion: @escaping (Result<[RestaurantListViewModel], Error>) -> Void){
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        //appD.locVal?.latitude / longitude
         service.request(.search(lat: 37.2638, long: -122.0230)){ (result) in
             switch result{
             case .success(let response):
                 let root = try? self.jsonDecoder.decode(Root.self, from: response.data)
-                print(root)
-            case .failure(let error):
+                completion(.success((root?.businesses.compactMap(RestaurantListViewModel.init))!))
+            case .failure(_):
                 print("error")
             }
         }

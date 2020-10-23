@@ -12,8 +12,6 @@ import CoreLocation
 
 @main
 
-
-
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var locVal: CLLocationCoordinate2D? = nil
