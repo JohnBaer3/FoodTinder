@@ -21,8 +21,8 @@
 		CB2431E025393C4600BB1CF7 /* FoodTinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431DF25393C4600BB1CF7 /* FoodTinderUITests.swift */; };
 		CB34C9F225393CA4003BB0C0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34C9F125393CA4003BB0C0 /* NetworkService.swift */; };
 		CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB658B0B253B7CB3006950A3 /* YelpCaller.swift */; };
-		CB658B17253B84C7006950A3 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB658B16253B84C7006950A3 /* RestaurantTableViewCell.swift */; };
 		CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4564A253944C200BC9391 /* RestaurantModel.swift */; };
+		CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +65,8 @@
 		CB2431E125393C4600BB1CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB34C9F125393CA4003BB0C0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CB658B0B253B7CB3006950A3 /* YelpCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpCaller.swift; sourceTree = "<group>"; };
-		CB658B16253B84C7006950A3 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		CBB4564A253944C200BC9391 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCVC.swift; sourceTree = "<group>"; };
 		CC47428CFA59D71959CED97F /* Pods-FoodTinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinderTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinderTests/Pods-FoodTinderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8413CD14911D4236AB8F76A /* Pods-FoodTinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinder/Pods-FoodTinder.debug.xcconfig"; sourceTree = "<group>"; };
 		EB4A8FE5742141B04E3FA569 /* Pods_FoodTinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +139,7 @@
 				CB2431C025393C4500BB1CF7 /* Main.storyboard */,
 				CB34C9F025393C92003BB0C0 /* Services */,
 				CB2431BE25393C4500BB1CF7 /* ViewController.swift */,
-				CB658B16253B84C7006950A3 /* RestaurantTableViewCell.swift */,
+				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
@@ -432,8 +432,8 @@
 				CB34C9F225393CA4003BB0C0 /* NetworkService.swift in Sources */,
 				CB2431BF25393C4500BB1CF7 /* ViewController.swift in Sources */,
 				CB2431C525393C4500BB1CF7 /* FoodTinder.xcdatamodeld in Sources */,
+				CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */,
 				CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */,
-				CB658B17253B84C7006950A3 /* RestaurantTableViewCell.swift in Sources */,
 				CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */,
 				CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */,
 				CB2431BD25393C4500BB1CF7 /* SceneDelegate.swift in Sources */,
