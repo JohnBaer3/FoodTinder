@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView?.frame = view.bounds
         
-        yelpCaller.yelpCall(completion: {[weak self] result in
+        yelpCaller.yelpCall(parameters:[], completion: {[weak self] result in
             switch result{
             case .success(let data):
                 self?.restaurants.append(contentsOf: data)
