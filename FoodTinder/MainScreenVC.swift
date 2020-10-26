@@ -10,9 +10,8 @@ import UIKit
 class MainScreenVC: UIViewController {
         
     var yelpCaller: YelpCaller = YelpCaller()
-    
     var restaurants = [RestaurantListViewModel]()
-    
+    var likedRestaurants:[String] = []
     private var collectionView: UICollectionView?
     
     override func viewDidLoad() {
@@ -31,10 +30,6 @@ class MainScreenVC: UIViewController {
         collectionView?.register(RestaurantCVC.self, forCellWithReuseIdentifier: RestaurantCVC.identifier)
         collectionView?.isPagingEnabled = true
         collectionView?.dataSource = self
-        
-        collectionView?.isUserInteractionEnabled = true
-        collectionView?.allowsSelection = true
-        
         view.addSubview(collectionView!)
     }
     
@@ -73,6 +68,15 @@ extension MainScreenVC: UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCVC.identifier,
                                                       for: indexPath) as! RestaurantCVC
         cell.configure(with: restaurants[indexPath.row])
+        cell.restaurantCellDelegate = self
         return cell
+    }
+}
+
+
+extension MainScreenVC: RestaurantCollectionViewCellDelegate{
+    func didTapLike(with model: RestaurantListViewModel){
+        likedRestaurants.append(model.name)
+        print(likedRestaurants)
     }
 }

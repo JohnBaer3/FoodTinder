@@ -15,7 +15,7 @@ protocol RestaurantCollectionViewCellDelegate: AnyObject{
 
 
 class RestaurantCVC: UICollectionViewCell {
-    weak var delegate: RestaurantCollectionViewCellDelegate?
+    weak var restaurantCellDelegate: RestaurantCollectionViewCellDelegate?
     private var restaurantModel: RestaurantListViewModel?
     
     static let identifier = "RestaurantCell"
@@ -86,8 +86,7 @@ class RestaurantCVC: UICollectionViewCell {
     
     @objc private func likeButtonClicked(){
         guard let restaurantModel = restaurantModel else { return }
-        delegate?.didTapLike(with: restaurantModel)
-        print("yaas")
+        restaurantCellDelegate?.didTapLike(with: restaurantModel)
     }
     
 }
