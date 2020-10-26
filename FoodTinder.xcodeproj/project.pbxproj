@@ -12,7 +12,7 @@
 		C4949F40FC1D3D67E71D7A3C /* Pods_FoodTinder_FoodTinderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A7A70B0BD31554D45B0 /* Pods_FoodTinder_FoodTinderUITests.framework */; };
 		CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */; };
 		CB2431BD25393C4500BB1CF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */; };
-		CB2431BF25393C4500BB1CF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BE25393C4500BB1CF7 /* ViewController.swift */; };
+		CB2431BF25393C4500BB1CF7 /* MainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */; };
 		CB2431C225393C4500BB1CF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB2431C025393C4500BB1CF7 /* Main.storyboard */; };
 		CB2431C525393C4500BB1CF7 /* FoodTinder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB2431C325393C4500BB1CF7 /* FoodTinder.xcdatamodeld */; };
 		CB2431C725393C4500BB1CF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB2431C625393C4500BB1CF7 /* Assets.xcassets */; };
@@ -23,6 +23,8 @@
 		CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB658B0B253B7CB3006950A3 /* YelpCaller.swift */; };
 		CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4564A253944C200BC9391 /* RestaurantModel.swift */; };
 		CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */; };
+		CBDA36872546568400E71F72 /* SwipeEffectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA36862546568400E71F72 /* SwipeEffectController.swift */; };
+		CBDA369325465AFD00E71F72 /* FilterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +53,7 @@
 		CB2431B725393C4500BB1CF7 /* FoodTinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB2431BE25393C4500BB1CF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
 		CB2431C125393C4500BB1CF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB2431C425393C4500BB1CF7 /* FoodTinder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodTinder.xcdatamodel; sourceTree = "<group>"; };
 		CB2431C625393C4500BB1CF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +69,8 @@
 		CB658B0B253B7CB3006950A3 /* YelpCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpCaller.swift; sourceTree = "<group>"; };
 		CBB4564A253944C200BC9391 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCVC.swift; sourceTree = "<group>"; };
+		CBDA36862546568400E71F72 /* SwipeEffectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeEffectController.swift; sourceTree = "<group>"; };
+		CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreenVC.swift; sourceTree = "<group>"; };
 		CC47428CFA59D71959CED97F /* Pods-FoodTinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinderTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinderTests/Pods-FoodTinderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8413CD14911D4236AB8F76A /* Pods-FoodTinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinder/Pods-FoodTinder.debug.xcconfig"; sourceTree = "<group>"; };
 		EB4A8FE5742141B04E3FA569 /* Pods_FoodTinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodTinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +142,9 @@
 			children = (
 				CB2431C025393C4500BB1CF7 /* Main.storyboard */,
 				CB34C9F025393C92003BB0C0 /* Services */,
-				CB2431BE25393C4500BB1CF7 /* ViewController.swift */,
+				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
+				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
+				CBDA36862546568400E71F72 /* SwipeEffectController.swift */,
 				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
@@ -429,12 +435,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBDA369325465AFD00E71F72 /* FilterScreenVC.swift in Sources */,
 				CB34C9F225393CA4003BB0C0 /* NetworkService.swift in Sources */,
-				CB2431BF25393C4500BB1CF7 /* ViewController.swift in Sources */,
+				CB2431BF25393C4500BB1CF7 /* MainScreenVC.swift in Sources */,
 				CB2431C525393C4500BB1CF7 /* FoodTinder.xcdatamodeld in Sources */,
 				CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */,
 				CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */,
 				CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */,
+				CBDA36872546568400E71F72 /* SwipeEffectController.swift in Sources */,
 				CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */,
 				CB2431BD25393C4500BB1CF7 /* SceneDelegate.swift in Sources */,
 			);

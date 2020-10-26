@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainPageVC: UIViewController {
+class MainScreenVC: UIViewController {
         
     var yelpCaller: YelpCaller = YelpCaller()
     
@@ -60,7 +60,7 @@ class MainPageVC: UIViewController {
     }
 }
 
-extension MainPageVC: UICollectionViewDataSource{
+extension MainScreenVC: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return restaurants.count
     }
