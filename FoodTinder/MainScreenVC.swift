@@ -31,6 +31,10 @@ class MainScreenVC: UIViewController {
         collectionView?.register(RestaurantCVC.self, forCellWithReuseIdentifier: RestaurantCVC.identifier)
         collectionView?.isPagingEnabled = true
         collectionView?.dataSource = self
+        
+        collectionView?.isUserInteractionEnabled = true
+        collectionView?.allowsSelection = true
+        
         view.addSubview(collectionView!)
     }
     
@@ -72,4 +76,3 @@ extension MainScreenVC: UICollectionViewDataSource{
         return cell
     }
 }
-

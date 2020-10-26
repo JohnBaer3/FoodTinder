@@ -145,7 +145,6 @@
 				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
 				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
 				CBDA36862546568400E71F72 /* SwipeEffectController.swift */,
-				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
@@ -180,6 +179,7 @@
 				CBB4564A253944C200BC9391 /* RestaurantModel.swift */,
 				CB34C9F125393CA4003BB0C0 /* NetworkService.swift */,
 				CB658B0B253B7CB3006950A3 /* YelpCaller.swift */,
+				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

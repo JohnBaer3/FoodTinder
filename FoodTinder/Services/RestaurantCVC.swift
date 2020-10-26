@@ -9,10 +9,17 @@ import UIKit
 import AlamofireImage
 
 
+protocol RestaurantCollectionViewCellDelegate: AnyObject{
+    func didTapLike(with model: RestaurantListViewModel)
+}
+
+
 class RestaurantCVC: UICollectionViewCell {
-    static let identifier = "RestaurantCell"
+    weak var delegate: RestaurantCollectionViewCellDelegate?
     private var restaurantModel: RestaurantListViewModel?
     
+    static let identifier = "RestaurantCell"
+
     
     private let restaurantImage: UIImageView = {
         let restaurantImage = UIImageView()
@@ -27,23 +34,32 @@ class RestaurantCVC: UICollectionViewCell {
         return restaurantLabel
     }()
     
+    private let likeButton: UIButton = {
+        let likeButton = UIButton()
+        likeButton.setBackgroundImage(UIImage(systemName: "heart.circle"), for: .normal)
+        return likeButton
+    }()
+    
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        contentView.backgroundColor = .orange
+        contentView.backgroundColor = .black
         contentView.clipsToBounds = true
     }
+    
     
     public func configure(with model: RestaurantListViewModel){
         self.restaurantModel = model
         
         restaurantImage.af.setImage(withURL: restaurantModel!.imageUrl)
         restaurantLabel.text = restaurantModel!.name
+        likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchDown)
 
         layoutSubviews()
         
         contentView.addSubview(restaurantImage)
         contentView.addSubview(restaurantLabel)
+        contentView.addSubview(likeButton)
     }
     
     override func layoutSubviews(){
@@ -54,10 +70,24 @@ class RestaurantCVC: UICollectionViewCell {
         let height = contentView.frame.size.height
         
         restaurantLabel.frame = CGRect(x: width-size, y: height-size, width: size, height: size)
+        likeButton.frame = CGRect(x: width-size, y: height-size+50, width: size, height: size)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        restaurantLabel.text = nil
+        restaurantImage.image = nil
     }
     
     required init?(coder: NSCoder) {
         fatalError("Oops! RestaurantCVC error")
+    }
+    
+    
+    @objc private func likeButtonClicked(){
+        guard let restaurantModel = restaurantModel else { return }
+        delegate?.didTapLike(with: restaurantModel)
+        print("yaas")
     }
     
 }
