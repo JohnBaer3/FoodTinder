@@ -18,8 +18,6 @@ class MainScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(filterList)
-        
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
@@ -34,6 +32,11 @@ class MainScreenVC: UIViewController {
         collectionView?.isPagingEnabled = true
         collectionView?.dataSource = self
         view.addSubview(collectionView!)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Here ", filterList)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -88,7 +91,7 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
 
 extension MainScreenVC: FilterScreenDelegate{
     func filterList(filterList: [(filterType: filterTypes, title: String)]){
-        print(filterList)
+        self.filterList = filterList
     }
 }
 

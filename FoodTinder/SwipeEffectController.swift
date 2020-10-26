@@ -19,8 +19,8 @@ class SwipeEffectController: UIPageViewController, UIPageViewControllerDataSourc
             self.delegate = self
             self.dataSource = self
             
-            let mainScreen: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "MainScreen") as! MainScreenVC
-            let filterScreen: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "FilterScreen") as! FilterScreenVC
+            let mainScreen = storyboard?.instantiateViewController(withIdentifier: "MainScreen") as! MainScreenVC
+            let filterScreen = storyboard?.instantiateViewController(withIdentifier: "FilterScreen") as! FilterScreenVC
             filterScreen.filterScreenDelegate = mainScreen
             
             pages.append(filterScreen)

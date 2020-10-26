@@ -29,6 +29,8 @@ class FilterScreenVC: UIViewController {
     }
     
     
+    
+    //Helper function for identifiying position of tuples
     func contains(a:[(filterTypes, String)], v:(filterTypes, String)) -> Int {
         var pos = 0
         let (c1, c2) = v
@@ -39,10 +41,6 @@ class FilterScreenVC: UIViewController {
             pos += 1
         }
         return -1
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        filterScreenDelegate?.filterList(filterList: filterList)
     }
 }
 
@@ -59,6 +57,7 @@ extension FilterScreenVC: FilterButtonDelegate{
                 filterList.remove(at: pos)
             }
         }
+        filterScreenDelegate?.filterList(filterList: filterList)
     }
 }
 
