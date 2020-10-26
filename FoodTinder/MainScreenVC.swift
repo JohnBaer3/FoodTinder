@@ -13,9 +13,12 @@ class MainScreenVC: UIViewController {
     var restaurants = [RestaurantListViewModel]()
     var likedRestaurants:[String] = []
     private var collectionView: UICollectionView?
-    
+    var filterList: [(filterType: filterTypes, title: String)] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(filterList)
         
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -80,3 +83,12 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
         print(likedRestaurants)
     }
 }
+
+
+
+extension MainScreenVC: FilterScreenDelegate{
+    func filterList(filterList: [(filterType: filterTypes, title: String)]){
+        print(filterList)
+    }
+}
+

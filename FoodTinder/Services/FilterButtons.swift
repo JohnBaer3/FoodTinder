@@ -8,14 +8,14 @@
 import UIKit
 
 protocol FilterButtonDelegate: AnyObject{
-    func didClick(filterType: filterTypes, title: String)
+    func didClick(filterType: filterTypes, title: String, buttonDown: Bool)
 }
 
 
 class FilterButtons: UIButton {
     weak var filterButtonDelegate: FilterButtonDelegate!
     var filterType: filterTypes?
-
+    var buttonDown: Bool = false
     
     required init(filterType: filterTypes, title: String) {
         super.init(frame: .zero)
@@ -37,8 +37,18 @@ class FilterButtons: UIButton {
         addTarget(self, action: #selector(buttonClicked), for: .touchDown)
     }
     
+    func buttonSelectHighlightFlip(){
+        buttonDown = !buttonDown
+        if buttonDown{
+            backgroundColor = .black
+        }else{
+            backgroundColor = .orange
+        }
+    }
+    
     @objc private func buttonClicked(){
-        filterButtonDelegate?.didClick(filterType: self.filterType!, title: self.currentTitle!)
+        buttonSelectHighlightFlip()
+        filterButtonDelegate?.didClick(filterType: self.filterType!, title: self.currentTitle!, buttonDown: self.buttonDown)
     }
 }
 

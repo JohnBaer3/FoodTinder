@@ -19,8 +19,9 @@ class SwipeEffectController: UIPageViewController, UIPageViewControllerDataSourc
             self.delegate = self
             self.dataSource = self
             
-            let mainScreen: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "MainScreen")
-            let filterScreen: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "FilterScreen")
+            let mainScreen: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "MainScreen") as! MainScreenVC
+            let filterScreen: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "FilterScreen") as! FilterScreenVC
+            filterScreen.filterScreenDelegate = mainScreen
             
             pages.append(filterScreen)
             pages.append(mainScreen)
@@ -32,9 +33,11 @@ class SwipeEffectController: UIPageViewController, UIPageViewControllerDataSourc
            
             let cur = pages.firstIndex(of: viewController)!
 
-            // if you prefer to NOT scroll circularly, simply add here:
-             if cur == 0 { return nil }
+            print(cur)
 
+            
+            // if you prefer to NOT scroll circularly, simply add here:
+            if cur == 0 { return nil }
             var prev = (cur - 1) % pages.count
             if prev < 0 {
                 prev = pages.count - 1
@@ -43,13 +46,11 @@ class SwipeEffectController: UIPageViewController, UIPageViewControllerDataSourc
         }
 
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController)-> UIViewController? {
-            
             let cur = pages.firstIndex(of: viewController)!
-
             // if you prefer to NOT scroll circularly, simply add here:
-             if cur == (pages.count - 1) { return nil }
-
+            if cur == (pages.count - 1) { return nil }
             let nxt = abs((cur + 1) % pages.count)
+            
             return pages[nxt]
         }
 
