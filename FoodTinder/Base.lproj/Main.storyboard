@@ -49,7 +49,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="WWW-Ok-i8N">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ncq-35-O0r" customClass="Home_PageViewController" customModule="SocialStudying" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ncq-35-O0r" customClass="Home_PageViewController" customModule="FoodTinder" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Kc3-Z3-p6J"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fv6-LV-kyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
