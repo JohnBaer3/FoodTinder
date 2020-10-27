@@ -10,7 +10,7 @@ import UIKit
 
 //This PageViewController is for the swiping effect to navigate between the Home Pages
 //Also grabs the user's data
-class SwipeEffectController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class HorizontalSwipeEffectController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     var pages = [UIViewController]()
 

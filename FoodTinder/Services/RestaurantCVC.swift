@@ -23,7 +23,7 @@ class RestaurantCVC: UICollectionViewCell {
     
     private let restaurantImage: UIImageView = {
         let restaurantImage = UIImageView()
-        restaurantImage.frame = CGRect(x:0, y:0, width:300, height:300)
+//        restaurantImage.frame = CGRect(x:0, y:0, width:300, height:300)
         return restaurantImage
     }()
     
@@ -43,7 +43,7 @@ class RestaurantCVC: UICollectionViewCell {
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        contentView.backgroundColor = .black
+        contentView.backgroundColor = .orange
         contentView.clipsToBounds = true
     }
     
@@ -52,6 +52,16 @@ class RestaurantCVC: UICollectionViewCell {
         self.restaurantModel = model
         
         restaurantImage.af.setImage(withURL: restaurantModel!.imageUrl)
+        let (imageWidth, imageHeight) = getURLImageSize(url: restaurantModel!.imageUrl as CFURL)
+        let imageWidthRatio = imageWidth/contentView.frame.size.width
+        let imageHeightRatio = imageHeight/contentView.frame.size.height
+        let imageRatio = imageWidthRatio > imageHeightRatio ? 1/imageWidthRatio : 1/imageHeightRatio
+        restaurantImage.frame = CGRect(x:(contentView.frame.size.width-imageWidth*imageRatio)/2,
+                                       y:0,
+                                       width:imageWidth*imageRatio,
+                                       height:imageHeight*imageRatio
+                                )
+        
         restaurantLabel.text = restaurantModel!.name
         likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchDown)
 
@@ -60,6 +70,17 @@ class RestaurantCVC: UICollectionViewCell {
         contentView.addSubview(restaurantImage)
         contentView.addSubview(restaurantLabel)
         contentView.addSubview(likeButton)
+    }
+    
+    func getURLImageSize(url: CFURL) -> (CGFloat, CGFloat){
+        if let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) {
+            if let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? {
+                let pixelWidth = imageProperties[kCGImagePropertyPixelWidth] as! CGFloat
+                let pixelHeight = imageProperties[kCGImagePropertyPixelHeight] as! CGFloat
+                return (pixelWidth, pixelHeight)
+            }
+        }
+        return (300, 300)
     }
     
     override func layoutSubviews(){

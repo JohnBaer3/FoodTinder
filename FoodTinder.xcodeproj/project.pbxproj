@@ -25,7 +25,7 @@
 		CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB658B0B253B7CB3006950A3 /* YelpCaller.swift */; };
 		CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB4564A253944C200BC9391 /* RestaurantModel.swift */; };
 		CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */; };
-		CBDA36872546568400E71F72 /* SwipeEffectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA36862546568400E71F72 /* SwipeEffectController.swift */; };
+		CBDA36872546568400E71F72 /* HorizontalSwipeEffectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */; };
 		CBDA369325465AFD00E71F72 /* FilterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +73,7 @@
 		CB658B0B253B7CB3006950A3 /* YelpCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpCaller.swift; sourceTree = "<group>"; };
 		CBB4564A253944C200BC9391 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCVC.swift; sourceTree = "<group>"; };
-		CBDA36862546568400E71F72 /* SwipeEffectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeEffectController.swift; sourceTree = "<group>"; };
+		CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSwipeEffectController.swift; sourceTree = "<group>"; };
 		CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreenVC.swift; sourceTree = "<group>"; };
 		CC47428CFA59D71959CED97F /* Pods-FoodTinderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinderTests.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinderTests/Pods-FoodTinderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8413CD14911D4236AB8F76A /* Pods-FoodTinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodTinder.debug.xcconfig"; path = "Target Support Files/Pods-FoodTinder/Pods-FoodTinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 				CB34C9F025393C92003BB0C0 /* Services */,
 				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
 				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
-				CBDA36862546568400E71F72 /* SwipeEffectController.swift */,
+				CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
@@ -448,7 +448,7 @@
 				CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */,
 				CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */,
 				CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */,
-				CBDA36872546568400E71F72 /* SwipeEffectController.swift in Sources */,
+				CBDA36872546568400E71F72 /* HorizontalSwipeEffectController.swift in Sources */,
 				CB52C4692546807500D9DC5D /* FilterButtons.swift in Sources */,
 				CBB4564B253944C200BC9391 /* RestaurantModel.swift in Sources */,
 				CB52C4712546876100D9DC5D /* Enums.swift in Sources */,

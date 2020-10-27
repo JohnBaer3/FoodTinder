@@ -24,7 +24,7 @@ class MainScreenVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: view.frame.size.width,
-                                 height: view.frame.size.height)
+                                 height: view.frame.size.height-10)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
