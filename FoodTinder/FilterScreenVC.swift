@@ -15,7 +15,7 @@ protocol FilterScreenDelegate: AnyObject {
 
 //How should this work --
 //  Make an array of all the filters that I want to add
-//  The array should take in different parameters - a Radius, Foods (term, categories), Price, Location filters
+//  The array should take in different parameters - a Radius, Foods (term), Price, Location filters
 class FilterScreenVC: UIViewController {
     var filterList: [(filterType: filterTypes, title: String)] = []
     weak var filterScreenDelegate: FilterScreenDelegate!

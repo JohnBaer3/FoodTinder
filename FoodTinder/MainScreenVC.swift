@@ -35,15 +35,16 @@ class MainScreenVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("Here ", filterList)
-
+        yelpCall(parameters: filterList)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView?.frame = view.bounds
-        
-        yelpCaller.yelpCall(parameters:[], completion: {[weak self] result in
+    }
+    
+    func yelpCall(parameters: [(filterType: filterTypes, title: String)]){
+        yelpCaller.yelpCall(parameters:parameters, completion: {[weak self] result in
             switch result{
             case .success(let data):
                 self?.restaurants.append(contentsOf: data)
