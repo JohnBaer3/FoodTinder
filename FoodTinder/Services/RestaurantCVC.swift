@@ -23,7 +23,6 @@ class RestaurantCVC: UICollectionViewCell {
     
     private let restaurantImage: UIImageView = {
         let restaurantImage = UIImageView()
-//        restaurantImage.frame = CGRect(x:0, y:0, width:300, height:300)
         return restaurantImage
     }()
     
@@ -56,10 +55,10 @@ class RestaurantCVC: UICollectionViewCell {
         let imageWidthRatio = imageWidth/contentView.frame.size.width
         let imageHeightRatio = imageHeight/contentView.frame.size.height
         let imageRatio = imageWidthRatio > imageHeightRatio ? 1/imageWidthRatio : 1/imageHeightRatio
-        restaurantImage.frame = CGRect(x:(contentView.frame.size.width-imageWidth*imageRatio)/2,
-                                       y:0,
-                                       width:imageWidth*imageRatio,
-                                       height:imageHeight*imageRatio
+        restaurantImage.frame = CGRect(x: (contentView.frame.size.width-imageWidth*imageRatio)/2,
+                                       y: (contentView.frame.size.height-imageHeight*imageRatio)/2,
+                                       width: imageWidth*imageRatio,
+                                       height: imageHeight*imageRatio
                                 )
         
         restaurantLabel.text = restaurantModel!.name
