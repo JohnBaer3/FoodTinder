@@ -26,6 +26,9 @@ class FilterScreenVC: UIViewController {
         let button = FilterButtons(filterType: .foods, title: "ramen")
         button.filterButtonDelegate = self
         view.addSubview(button)
+        
+        let titleLabel = FilterTitleLabel(title: "FOODS")
+        view.addSubview(titleLabel)
     }
     
     

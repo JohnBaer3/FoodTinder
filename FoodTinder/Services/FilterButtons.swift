@@ -34,7 +34,6 @@ class FilterButtons: UIButton {
         setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
         layer.cornerRadius = 20.0
         frame.size = CGSize(width: 100, height: 100)
-        
         addTarget(self, action: #selector(buttonClicked), for: .touchDown)
     }
     
