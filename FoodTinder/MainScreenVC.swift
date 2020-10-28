@@ -12,6 +12,7 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     var yelpCaller: YelpCaller = YelpCaller()
     var restaurants = [RestaurantListViewModel]()
     var likedRestaurants:[String] = []
+    var superLikedRestaurants:[String] = []
     private var collectionView: UICollectionView?
     var filterList: [(filterType: filterTypes, title: String)] = []
 
@@ -94,6 +95,11 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
     func didTapLike(with model: RestaurantListViewModel){
         likedRestaurants.append(model.name)
         print(likedRestaurants)
+    }
+    
+    func didTapSuperLike(with model: RestaurantListViewModel){
+        superLikedRestaurants.append(model.name)
+        print("super!! ", superLikedRestaurants)
     }
 }
 

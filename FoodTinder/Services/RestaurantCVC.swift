@@ -11,6 +11,7 @@ import AlamofireImage
 
 protocol RestaurantCollectionViewCellDelegate: AnyObject{
     func didTapLike(with model: RestaurantListViewModel)
+    func didTapSuperLike(with model: RestaurantListViewModel)
 }
 
 
@@ -19,7 +20,8 @@ class RestaurantCVC: UICollectionViewCell {
     private var restaurantModel: RestaurantListViewModel?
     
     static let identifier = "RestaurantCell"
-
+    var clickedLike = false
+    var clickedSuperLike = false
     
     private let restaurantImage: UIImageView = {
         let restaurantImage = UIImageView()
@@ -30,13 +32,37 @@ class RestaurantCVC: UICollectionViewCell {
         let restaurantLabel = UILabel()
         restaurantLabel.textAlignment = .left
         restaurantLabel.textColor = .white
+        restaurantLabel.font = .boldSystemFont(ofSize: 30.0)
+        restaurantLabel.backgroundColor = .black
         return restaurantLabel
     }()
     
     private let likeButton: UIButton = {
         let likeButton = UIButton()
-        likeButton.setBackgroundImage(UIImage(systemName: "heart.circle"), for: .normal)
+        let image = UIImage(imageLiteralResourceName: "heartUnfilled")
+        likeButton.setBackgroundImage(image, for: .normal)
         return likeButton
+    }()
+    
+    private let superLikeButton: UIButton = {
+        let superLikeButton = UIButton()
+        let image = UIImage(imageLiteralResourceName: "superLikeUnfilled")
+        superLikeButton.setBackgroundImage(image, for: .normal)
+        return superLikeButton
+    }()
+    
+    private let listButton: UIButton = {
+        let listButton = UIButton()
+        let image = UIImage(imageLiteralResourceName: "notePad")
+        listButton.setBackgroundImage(image, for: .normal)
+        return listButton
+    }()
+    
+    private let arrowButton: UIButton = {
+        let arrowButton = UIButton()
+        let image = UIImage(imageLiteralResourceName: "sidewaysArrow")
+        arrowButton.setBackgroundImage(image, for: .normal)
+        return arrowButton
     }()
     
     override init(frame: CGRect){
@@ -63,12 +89,16 @@ class RestaurantCVC: UICollectionViewCell {
         
         restaurantLabel.text = restaurantModel!.name
         likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchDown)
+        superLikeButton.addTarget(self, action: #selector(superLikeButtonClicked), for: .touchDown)
 
         layoutSubviews()
         
         contentView.addSubview(restaurantImage)
         contentView.addSubview(restaurantLabel)
         contentView.addSubview(likeButton)
+        contentView.addSubview(superLikeButton)
+        contentView.addSubview(listButton)
+        contentView.addSubview(arrowButton)
     }
     
     func getURLImageSize(url: CFURL) -> (CGFloat, CGFloat){
@@ -79,18 +109,24 @@ class RestaurantCVC: UICollectionViewCell {
                 return (pixelWidth, pixelHeight)
             }
         }
+        //Default if image size can't be found
         return (300, 300)
     }
     
     override func layoutSubviews(){
         super.layoutSubviews()
         
-        let size = contentView.frame.size.width/6
+        let size = 50
         let width = contentView.frame.size.width
         let height = contentView.frame.size.height
         
-        restaurantLabel.frame = CGRect(x: width-size, y: height-size, width: size, height: size)
-        likeButton.frame = CGRect(x: width-size, y: height-size+50, width: size, height: size)
+        restaurantLabel.frame = CGRect(x: 50, y: 0, width: restaurantModel!.name.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 35)!) + 10, height: 80)
+        arrowButton.frame = CGRect(x: 30, y: Int(contentView.frame.size.height)/2-13, width: size-25, height: size-15)
+        
+        likeButton.frame = CGRect(x: Int(width)-size-20, y: Int(contentView.frame.size.height)/2, width: size+10, height: size-10)
+        superLikeButton.frame = CGRect(x: Int(width)-size-15, y: Int(contentView.frame.size.height)/2+size+10, width: size-5, height: size-10)
+        listButton.frame = CGRect(x: Int(width)-size-10, y: Int(contentView.frame.size.height)/2+size*2+20, width: size-15, height: size)
+
     }
     
     override func prepareForReuse() {
@@ -107,6 +143,49 @@ class RestaurantCVC: UICollectionViewCell {
     @objc private func likeButtonClicked(){
         guard let restaurantModel = restaurantModel else { return }
         restaurantCellDelegate?.didTapLike(with: restaurantModel)
+        
+        clickedLike = !clickedLike
+        if clickedLike{
+            let systemImage = UIImage(imageLiteralResourceName: "heartFilled")
+            likeButton.setBackgroundImage(systemImage, for: .normal)
+        }else{
+            let systemImage = UIImage(imageLiteralResourceName: "heartUnfilled")
+            likeButton.setBackgroundImage(systemImage, for: .normal)
+        }
     }
     
+
+    @objc private func superLikeButtonClicked(){
+        guard let restaurantModel = restaurantModel else { return }
+        restaurantCellDelegate?.didTapSuperLike(with: restaurantModel)
+        
+        clickedSuperLike = !clickedSuperLike
+        if clickedSuperLike{
+            let systemImage = UIImage(imageLiteralResourceName: "superLikeFilled")
+            superLikeButton.setBackgroundImage(systemImage, for: .normal)
+        }else{
+            let systemImage = UIImage(imageLiteralResourceName: "superLikeUnfilled")
+            superLikeButton.setBackgroundImage(systemImage, for: .normal)
+        }
+    }
+    
+    
+    
+}
+
+
+extension String {
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> Int {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+
+        return Int(ceil(boundingBox.height))
+    }
+
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> Int {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+
+        return Int(ceil(boundingBox.width))
+    }
 }
