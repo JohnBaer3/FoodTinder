@@ -30,7 +30,8 @@ class FilterButtons: UIButton {
     }
     
     func setUpButton(){
-        backgroundColor = .orange
+        backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
         layer.cornerRadius = 20.0
         frame.size = CGSize(width: 100, height: 100)
         
@@ -40,9 +41,11 @@ class FilterButtons: UIButton {
     func buttonSelectHighlightFlip(){
         buttonDown = !buttonDown
         if buttonDown{
-            backgroundColor = .black
+            backgroundColor = .white
+            setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
         }else{
-            backgroundColor = .orange
+            backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
         }
     }
     

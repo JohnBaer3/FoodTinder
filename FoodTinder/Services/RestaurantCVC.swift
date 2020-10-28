@@ -42,7 +42,7 @@ class RestaurantCVC: UICollectionViewCell {
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        contentView.backgroundColor = .orange
+        contentView.backgroundColor = .black
         contentView.clipsToBounds = true
     }
     

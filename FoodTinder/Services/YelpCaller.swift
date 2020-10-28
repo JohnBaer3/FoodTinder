@@ -42,6 +42,7 @@ class YelpCaller{
             }
         }
         
+        //Probably needs to be put into another thread
         service.request(.search(term: foodTerm, lat: lat, long: long)){ (result) in
             switch result{
                 case .success(let response):

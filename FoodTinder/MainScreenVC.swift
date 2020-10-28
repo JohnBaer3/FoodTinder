@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainScreenVC: UIViewController {
+class MainScreenVC: UIViewController, UICollectionViewDelegate {
         
     var yelpCaller: YelpCaller = YelpCaller()
     var restaurants = [RestaurantListViewModel]()
@@ -31,6 +31,7 @@ class MainScreenVC: UIViewController {
         collectionView?.register(RestaurantCVC.self, forCellWithReuseIdentifier: RestaurantCVC.identifier)
         collectionView?.isPagingEnabled = true
         collectionView?.dataSource = self
+        collectionView?.delegate = self
         view.addSubview(collectionView!)
     }
     
@@ -47,6 +48,11 @@ class MainScreenVC: UIViewController {
         yelpCaller.yelpCall(parameters:parameters, completion: {[weak self] result in
             switch result{
             case .success(let data):
+                //Get current cell's indexPath.row
+                let pos = self!.collectionView?.visibleCells.first?.tag
+                if pos != nil{
+                    self!.restaurants.removeLast(self!.restaurants.count - pos! - 1)
+                }
                 self?.restaurants.append(contentsOf: data)
                 DispatchQueue.main.async { [weak self] in
                     self!.collectionView?.reloadData()
@@ -56,6 +62,8 @@ class MainScreenVC: UIViewController {
             }
         })
     }
+    
+    
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeLeft
@@ -76,6 +84,7 @@ extension MainScreenVC: UICollectionViewDataSource{
                                                       for: indexPath) as! RestaurantCVC
         cell.configure(with: restaurants[indexPath.row])
         cell.restaurantCellDelegate = self
+        cell.tag = indexPath.row
         return cell
     }
 }
@@ -96,3 +105,13 @@ extension MainScreenVC: FilterScreenDelegate{
     }
 }
 
+
+extension MainScreenVC: UIScrollViewDelegate{
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if let collectionViewPos = collectionView?.visibleCells.first{
+            if collectionViewPos.tag + 3 > restaurants.count{
+                yelpCall(parameters: filterList)
+            }
+        }
+    }
+}
