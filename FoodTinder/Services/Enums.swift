@@ -9,5 +9,5 @@ import Foundation
 
 
 enum filterTypes{
-    case radius, foods, price, location
+    case radius, foods, categories, price, location
 }

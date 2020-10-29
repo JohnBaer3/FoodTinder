@@ -19,18 +19,35 @@ protocol FilterScreenDelegate: AnyObject {
 class FilterScreenVC: UIViewController {
     var filterList: [(filterType: filterTypes, title: String)] = []
     weak var filterScreenDelegate: FilterScreenDelegate!
+    var foodsFilterList = ["Chicken", "Steak", "Korean bbq", "Sushi", "Boba"]
+    
+    @IBOutlet weak var contentView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let button = FilterButtons(filterType: .foods, title: "ramen")
-        button.filterButtonDelegate = self
-        view.addSubview(button)
+        addFoodsSection()
         
-        let titleLabel = FilterTitleLabel(title: "FOODS")
-        view.addSubview(titleLabel)
     }
     
+    
+    
+    func addFoodsSection(){
+        let titleLabel = FilterTitleLabel(title: "FOODS", contentViewWidth: contentView.frame.width)
+        contentView.addSubview(titleLabel)
+        
+        var xPos = Int(contentView.frame.width/9)
+        var xWidth: Int = 0
+        var yPos: Int = 100
+        for food in foodsFilterList{
+            let button = FilterButtons(filterType: .foods, title: food, xPos: xPos, yPos: yPos)
+            button.filterButtonDelegate = self
+            contentView.addSubview(button)
+            xWidth = button.getWidth()
+            xPos += (xWidth + 5)
+        }
+    }
     
     
     //Helper function for identifiying position of tuples

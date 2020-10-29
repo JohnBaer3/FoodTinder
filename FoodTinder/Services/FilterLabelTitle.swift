@@ -10,10 +10,12 @@ import UIKit
 
 class FilterTitleLabel: UILabel {
     var title: String?
+    var contentViewWidth: CGFloat = 800
     
-    required init(title: String) {
+    required init(title: String, contentViewWidth: CGFloat) {
         super.init(frame: .zero)
         self.title = title
+        self.contentViewWidth = contentViewWidth
         setUpLabel()
     }
     
@@ -24,8 +26,8 @@ class FilterTitleLabel: UILabel {
     func setUpLabel(){
         textAlignment = .left
         textColor = .white
-        font = .boldSystemFont(ofSize: 30.0)
-        frame = CGRect(x: 30, y: 100, width: title!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 35)!), height: 50)
+        font = .boldSystemFont(ofSize: 35.0)
+        frame = CGRect(x: Int(contentViewWidth/9), y: 40, width: title!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 35)!), height: 50)
         self.text = title
     }
     
