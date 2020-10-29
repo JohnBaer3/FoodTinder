@@ -28,18 +28,38 @@ class FilterScreenVC: UIViewController {
         super.viewDidLoad()
         
         addFoodsSection()
-        
+        addLocationsSection()
     }
     
     
     
     func addFoodsSection(){
-        let titleLabel = FilterTitleLabel(title: "FOODS", contentViewWidth: contentView.frame.width)
+        var yPos: Int = 40
+
+        let titleLabel = FilterTitleLabel(title: "FOODS", contentViewWidth: contentView.frame.width, yPos: yPos)
         contentView.addSubview(titleLabel)
         
+        yPos = 100
         var xPos = Int(contentView.frame.width/9)
         var xWidth: Int = 0
-        var yPos: Int = 100
+        for food in foodsFilterList{
+            let button = FilterButtons(filterType: .foods, title: food, xPos: xPos, yPos: yPos)
+            button.filterButtonDelegate = self
+            contentView.addSubview(button)
+            xWidth = button.getWidth()
+            xPos += (xWidth + 5)
+        }
+    }
+    
+    func addLocationsSection(){
+        var yPos: Int = 200
+
+        let titleLabel = FilterTitleLabel(title: "LOCATION", contentViewWidth: contentView.frame.width, yPos: yPos)
+        contentView.addSubview(titleLabel)
+        
+        yPos = 250
+        var xPos = Int(contentView.frame.width/9)
+        var xWidth: Int = 0
         for food in foodsFilterList{
             let button = FilterButtons(filterType: .foods, title: food, xPos: xPos, yPos: yPos)
             button.filterButtonDelegate = self
