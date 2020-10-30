@@ -20,7 +20,9 @@ class FilterScreenVC: UIViewController {
     var filterList: [(filterType: filterTypes, title: String)] = []
     weak var filterScreenDelegate: FilterScreenDelegate!
     var foodsFilterList = ["Chicken", "Steak", "Korean bbq", "Sushi", "Boba"]
+    var locationFilterList = ["LA", "New York", "Tokyo", "Orange County", "Saratoga"]
     var priceFilterList = ["$", "$$", "$$$", "$$$$"]
+    var filterButtons = [FilterButtons]()
     
     @IBOutlet weak var contentView: UIView!
     
@@ -52,6 +54,7 @@ class FilterScreenVC: UIViewController {
             contentView.addSubview(button)
             xWidth = button.getWidth()
             xPos += (xWidth + 5)
+            filterButtons.append(button)
         }
     }
     
@@ -64,12 +67,13 @@ class FilterScreenVC: UIViewController {
         yPos = 250
         var xPos = Int(contentView.frame.width/9)
         var xWidth: Int = 0
-        for food in foodsFilterList{
-            let button = FilterButtons(filterType: .foods, title: food, xPos: xPos, yPos: yPos)
+        for food in locationFilterList{
+            let button = FilterButtons(filterType: .location, title: food, xPos: xPos, yPos: yPos)
             button.filterButtonDelegate = self
             contentView.addSubview(button)
             xWidth = button.getWidth()
             xPos += (xWidth + 5)
+            filterButtons.append(button)
         }
     }
     
@@ -88,6 +92,7 @@ class FilterScreenVC: UIViewController {
             contentView.addSubview(button)
             xWidth = button.getWidth()
             xPos += (xWidth + 5)
+            filterButtons.append(button)
         }
     }
     
@@ -104,6 +109,19 @@ class FilterScreenVC: UIViewController {
         }
         return -1
     }
+    
+    func unselectFilterButtons(_ filterType: filterTypes, _ title: String){
+        if filterType != .categories{
+            for button in filterButtons{
+                if button.filterType! == filterType && button.title! != title{
+                    if button.buttonDown{
+                        button.buttonSelectHighlightFlip()
+                    }
+                }
+            }
+        }
+        
+    }
 }
 
 
@@ -113,11 +131,15 @@ extension FilterScreenVC: FilterButtonDelegate{
     func didClick(filterType: filterTypes, title: String, buttonDown: Bool){
         if buttonDown{
             filterList.append((filterType: filterType, title: title))
+            unselectFilterButtons(filterType, title)
         }else{
             let pos = contains(a: filterList, v: (filterType, title))
             if pos != -1{
                 filterList.remove(at: pos)
             }
+            
+            //Additionally, turn off all filterButtons that are of type filterType - if you can only select
+            //  one of its type at a time
         }
         filterScreenDelegate?.filterList(filterList: filterList)
     }
