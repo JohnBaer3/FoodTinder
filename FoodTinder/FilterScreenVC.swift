@@ -28,10 +28,7 @@ class FilterScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        contentView.frame = CGRect(x: 0, y:0, width: contentView.frame.width, height: 1300)
-//        scrollView.contentSize = scrollView.frame.size
-        
+                
         addFoodsSection()
         addLocationsSection()
         addPriceSection()
@@ -116,11 +113,18 @@ class FilterScreenVC: UIViewController {
                 if button.filterType! == filterType && button.title! != title{
                     if button.buttonDown{
                         button.buttonSelectHighlightFlip()
+                        removeFromFilterList(filterType, title)
                     }
                 }
             }
         }
-        
+    }
+    
+    func removeFromFilterList(_ filterType: filterTypes, _ title: String){
+        let pos = contains(a: filterList, v: (filterType, title))
+        if pos != -1{
+            filterList.remove(at: pos)
+        }
     }
 }
 
@@ -131,15 +135,11 @@ extension FilterScreenVC: FilterButtonDelegate{
     func didClick(filterType: filterTypes, title: String, buttonDown: Bool){
         if buttonDown{
             filterList.append((filterType: filterType, title: title))
-            unselectFilterButtons(filterType, title)
-        }else{
-            let pos = contains(a: filterList, v: (filterType, title))
-            if pos != -1{
-                filterList.remove(at: pos)
-            }
-            
             //Additionally, turn off all filterButtons that are of type filterType - if you can only select
             //  one of its type at a time
+            unselectFilterButtons(filterType, title)
+        }else{
+            removeFromFilterList(filterType, title)
         }
         filterScreenDelegate?.filterList(filterList: filterList)
     }
