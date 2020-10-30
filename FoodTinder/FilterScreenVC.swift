@@ -20,15 +20,19 @@ class FilterScreenVC: UIViewController {
     var filterList: [(filterType: filterTypes, title: String)] = []
     weak var filterScreenDelegate: FilterScreenDelegate!
     var foodsFilterList = ["Chicken", "Steak", "Korean bbq", "Sushi", "Boba"]
+    var priceFilterList = ["$", "$$", "$$$", "$$$$"]
     
     @IBOutlet weak var contentView: UIView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        contentView.frame = CGRect(x: 0, y:0, width: contentView.frame.width, height: 1300)
+//        scrollView.contentSize = scrollView.frame.size
+        
         addFoodsSection()
         addLocationsSection()
+        addPriceSection()
     }
     
     
@@ -62,6 +66,24 @@ class FilterScreenVC: UIViewController {
         var xWidth: Int = 0
         for food in foodsFilterList{
             let button = FilterButtons(filterType: .foods, title: food, xPos: xPos, yPos: yPos)
+            button.filterButtonDelegate = self
+            contentView.addSubview(button)
+            xWidth = button.getWidth()
+            xPos += (xWidth + 5)
+        }
+    }
+    
+    func addPriceSection(){
+        var yPos: Int = 340
+
+        let titleLabel = FilterTitleLabel(title: "PRICE", contentViewWidth: contentView.frame.width, yPos: yPos)
+        contentView.addSubview(titleLabel)
+        
+        yPos = 390
+        var xPos = Int(contentView.frame.width/9)
+        var xWidth: Int = 0
+        for price in priceFilterList{
+            let button = FilterButtons(filterType: .price, title: price, xPos: xPos, yPos: yPos)
             button.filterButtonDelegate = self
             contentView.addSubview(button)
             xWidth = button.getWidth()
