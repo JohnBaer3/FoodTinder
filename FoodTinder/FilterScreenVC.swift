@@ -35,20 +35,21 @@ class FilterScreenVC: UIViewController {
                 
         addFilterSection("FOODS", foodsFilterList, .foods)
         addFilterSection("LOCATION", locationFilterList, .location)
-        addFilterSection("CATEGORIES", foodsFilterList, .categories)
+        addFilterSection("CATEGORIES", categoriesFilterList, .categories)
         addFilterSection("RADIUS", radiusFilterList, .radius)
         addFilterSection("PRICE", priceFilterList, .price)
-        
     }
     
     
+    //Makes each of the Filter Sections
+    //Makes the title, then the buttons
     func addFilterSection(_ title: String, _ filterArr: [String], _ filterType: filterTypes){
         let titleLabel = FilterTitleLabel(title: title, contentViewWidth: contentView.frame.width, yPos: yPos)
         contentView.addSubview(titleLabel)
         makeFilterButtonWithType(filterArr, filterType)
     }
     
-    
+    //Makes the buttons for each type of filter
     func makeFilterButtonWithType(_ filterArray: [String], _ filterType: filterTypes){
         yPos += 60
         var xPos = originalLeftXVal
@@ -73,7 +74,6 @@ class FilterScreenVC: UIViewController {
         }
         return xPos+xWidth+5
     }
-    
     
     //Helper function for identifiying position of tuples
     func contains(a:[(filterTypes, String)], v:(filterTypes, String)) -> Int {
