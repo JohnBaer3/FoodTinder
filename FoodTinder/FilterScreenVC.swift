@@ -19,78 +19,59 @@ protocol FilterScreenDelegate: AnyObject {
 class FilterScreenVC: UIViewController {
     var filterList: [(filterType: filterTypes, title: String)] = []
     weak var filterScreenDelegate: FilterScreenDelegate!
-    var foodsFilterList = ["Chicken", "Steak", "Korean bbq", "Sushi", "Boba"]
-    var locationFilterList = ["LA", "New York", "Tokyo", "Orange County", "Saratoga"]
+    var foodsFilterList = ["Chicken", "Steak", "Korean bbq", "Sushi", "Desserts", "Ice Cream", "Bakeries", "Donuts", "Seafood"]
+    var locationFilterList = ["LA", "New York", "Tokyo", "Taiwan", "Cincinnati", "Texas", "Grand Rapids", "Honolulu", "Miami", "Seattle", "San Francisco", "Las Vegas", "Chicago", "Tampa", "Florence", "Rome", "Kyoto", "Singapore", "Paris"]
+    var categoriesFilterList = ["Chinese", "American", "Food trucks", "Japanese", "Mexican", "Thai", "Italian", "Indian", "Greek", "Vietnamese"]
+    var radiusFilterList = ["0~5 mi", "5~10 mi", "10~15 mi", "15~20 mi", "20~25+ mi"]
     var priceFilterList = ["$", "$$", "$$$", "$$$$"]
     var filterButtons = [FilterButtons]()
+    lazy var originalLeftXVal = Int(contentView.frame.width/9)
+    var yPos: Int = 40
     
     @IBOutlet weak var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        addFoodsSection()
-        addLocationsSection()
-        addPriceSection()
+        addFilterSection("FOODS", foodsFilterList, .foods)
+        addFilterSection("LOCATION", locationFilterList, .location)
+        addFilterSection("CATEGORIES", foodsFilterList, .categories)
+        addFilterSection("RADIUS", radiusFilterList, .radius)
+        addFilterSection("PRICE", priceFilterList, .price)
+        
     }
     
     
-    
-    func addFoodsSection(){
-        var yPos: Int = 40
-
-        let titleLabel = FilterTitleLabel(title: "FOODS", contentViewWidth: contentView.frame.width, yPos: yPos)
+    func addFilterSection(_ title: String, _ filterArr: [String], _ filterType: filterTypes){
+        let titleLabel = FilterTitleLabel(title: title, contentViewWidth: contentView.frame.width, yPos: yPos)
         contentView.addSubview(titleLabel)
-        
-        yPos = 100
-        var xPos = Int(contentView.frame.width/9)
+        makeFilterButtonWithType(filterArr, filterType)
+    }
+    
+    
+    func makeFilterButtonWithType(_ filterArray: [String], _ filterType: filterTypes){
+        yPos += 60
+        var xPos = originalLeftXVal
         var xWidth: Int = 0
-        for food in foodsFilterList{
+
+        for food in filterArray{
             let button = FilterButtons(filterType: .foods, title: food, xPos: xPos, yPos: yPos)
+            xWidth = button.getWidth()
+            xPos = checkXIndent(xWidth, xPos)
+            button.xPos! = xPos
             button.filterButtonDelegate = self
             contentView.addSubview(button)
-            xWidth = button.getWidth()
-            xPos += (xWidth + 5)
             filterButtons.append(button)
         }
+        yPos += 90
     }
     
-    func addLocationsSection(){
-        var yPos: Int = 200
-
-        let titleLabel = FilterTitleLabel(title: "LOCATION", contentViewWidth: contentView.frame.width, yPos: yPos)
-        contentView.addSubview(titleLabel)
-        
-        yPos = 250
-        var xPos = Int(contentView.frame.width/9)
-        var xWidth: Int = 0
-        for food in locationFilterList{
-            let button = FilterButtons(filterType: .location, title: food, xPos: xPos, yPos: yPos)
-            button.filterButtonDelegate = self
-            contentView.addSubview(button)
-            xWidth = button.getWidth()
-            xPos += (xWidth + 5)
-            filterButtons.append(button)
+    func checkXIndent(_ xWidth: Int, _ xPos: Int) -> Int{
+        if xPos+xWidth > Int(contentView.frame.width)+50{
+            yPos += 60
+            return originalLeftXVal
         }
-    }
-    
-    func addPriceSection(){
-        var yPos: Int = 340
-
-        let titleLabel = FilterTitleLabel(title: "PRICE", contentViewWidth: contentView.frame.width, yPos: yPos)
-        contentView.addSubview(titleLabel)
-        
-        yPos = 390
-        var xPos = Int(contentView.frame.width/9)
-        var xWidth: Int = 0
-        for price in priceFilterList{
-            let button = FilterButtons(filterType: .price, title: price, xPos: xPos, yPos: yPos)
-            button.filterButtonDelegate = self
-            contentView.addSubview(button)
-            xWidth = button.getWidth()
-            xPos += (xWidth + 5)
-            filterButtons.append(button)
-        }
+        return xPos+xWidth+5
     }
     
     

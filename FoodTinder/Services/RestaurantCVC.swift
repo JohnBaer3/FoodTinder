@@ -117,7 +117,7 @@ class RestaurantCVC: UICollectionViewCell {
         super.layoutSubviews()
         
         let size = 50
-        let width = contentView.frame.size.width
+        let width = contentView.frame.size.width - 30
         let height = contentView.frame.size.height
         
         restaurantLabel.frame = CGRect(x: 50, y: 0, width: restaurantModel!.name.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 35)!) + 10, height: 80)

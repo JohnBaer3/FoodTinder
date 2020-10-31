@@ -46,22 +46,24 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     }
     
     func yelpCall(parameters: [(filterType: filterTypes, title: String)]){
-        yelpCaller.yelpCall(parameters:parameters, completion: {[weak self] result in
-            switch result{
-            case .success(let data):
-                //Get current cell's indexPath.row
-                let pos = self!.collectionView?.visibleCells.first?.tag
-                if pos != nil{
-                    self!.restaurants.removeLast(self!.restaurants.count - pos! - 1)
+        DispatchQueue.global(qos: .userInitiated).async{ [self] in
+            yelpCaller.yelpCall(parameters:parameters, completion: {[weak self] result in
+                switch result{
+                case .success(let data):
+                    //Get current cell's indexPath.row
+                    let pos = self!.collectionView?.visibleCells.first?.tag
+                    if pos != nil{
+                        self!.restaurants.removeLast(self!.restaurants.count - pos! - 1)
+                    }
+                    self?.restaurants.append(contentsOf: data)
+                    DispatchQueue.main.async { [weak self] in
+                        self!.collectionView?.reloadData()
+                    }
+                case .failure(_):
+                    break
                 }
-                self?.restaurants.append(contentsOf: data)
-                DispatchQueue.main.async { [weak self] in
-                    self!.collectionView?.reloadData()
-                }
-            case .failure(_):
-                break
-            }
-        })
+            })
+        }
     }
     
     
