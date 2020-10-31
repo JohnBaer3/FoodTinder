@@ -23,25 +23,26 @@ class YelpCaller{
     var foodTerm: String = ""
     var categories: String = ""
     var price: String = ""
-    var lat: Double = 37.2638
+    var lat: Double = 40.7128
     var long: Double = -122.0230
     
-    func yelpCall(parameters: [(filterType: filterTypes, title: Any)], completion: @escaping (Result<[RestaurantListViewModel], Error>) -> Void){
+    func yelpCall(parameters: [(filterType: filterTypes, content: Any)], completion: @escaping (Result<[RestaurantListViewModel], Error>) -> Void){
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
         for parameter in parameters{
             switch parameter.filterType{
             case .radius:
-                radius = Int(parameter.title as! String)!
+                radius = Int(parameter.content as! String)!
             case .foods:
-                foodTerm = parameter.title as! String
+                foodTerm = parameter.content as! String
             case .location:
-                lat = Double(parameter.title as! String)!
-                long = Double(parameter.title as! String)!
+                let arr = parameter.content as! [Double]
+                lat = arr[0]
+                long = arr[1]
             case .price:
-                price = parameter.title as! String
+                price = parameter.content as! String
             case .categories:
-                let categoryArray = parameter.title as! [String]
+                let categoryArray = parameter.content as! [String]
                 categories = ""
                 for category in categoryArray{
                     categories += category

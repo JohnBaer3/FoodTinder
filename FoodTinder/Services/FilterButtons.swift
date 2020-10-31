@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FilterButtonDelegate: AnyObject{
-    func didClick(filterType: filterTypes, title: String, buttonDown: Bool)
+    func didClick(filterType: filterTypes, content: String, buttonDown: Bool)
 }
 
 class FilterButtons: UIButton {
@@ -61,7 +61,7 @@ class FilterButtons: UIButton {
     
     @objc private func buttonClicked(){
         buttonSelectHighlightFlip()
-        filterButtonDelegate?.didClick(filterType: self.filterType!, title: self.currentTitle!, buttonDown: self.buttonDown)
+        filterButtonDelegate?.didClick(filterType: self.filterType!, content: self.currentTitle!, buttonDown: self.buttonDown)
     }
 }
 

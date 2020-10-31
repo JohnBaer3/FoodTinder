@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol FilterScreenDelegate: AnyObject {
-     func filterList(filterList: [(filterType: filterTypes, title: String)])
+     func filterList(filterList: [(filterType: filterTypes, content: String)])
 }
 
 
@@ -17,7 +17,7 @@ protocol FilterScreenDelegate: AnyObject {
 //  Make an array of all the filters that I want to add
 //  The array should take in different parameters - a Radius, Foods (term), Price, Location filters
 class FilterScreenVC: UIViewController {
-    var filterList: [(filterType: filterTypes, title: String)] = []
+    var filterList: [(filterType: filterTypes, content: String)] = []
     weak var filterScreenDelegate: FilterScreenDelegate!
     var foodsFilterList = ["Chicken", "Steak", "Korean bbq", "Sushi", "Desserts", "Ice Cream", "Bakeries", "Donuts", "Seafood"]
     var locationFilterList = ["LA", "New York", "Tokyo", "Taiwan", "Cincinnati", "Texas", "Grand Rapids", "Honolulu", "Miami", "Seattle", "San Francisco", "Las Vegas", "Chicago", "Tampa", "Florence", "Rome", "Kyoto", "Singapore", "Paris"]
@@ -88,21 +88,21 @@ class FilterScreenVC: UIViewController {
         return -1
     }
     
-    func unselectFilterButtons(_ filterType: filterTypes, _ title: String){
+    func unselectFilterButtons(_ filterType: filterTypes, _ content: String){
         if filterType != .categories{
             for button in filterButtons{
                 if button.filterType! == filterType && button.title! != title{
                     if button.buttonDown{
                         button.buttonSelectHighlightFlip()
-                        removeFromFilterList(filterType, title)
+                        removeFromFilterList(filterType, content)
                     }
                 }
             }
         }
     }
     
-    func removeFromFilterList(_ filterType: filterTypes, _ title: String){
-        let pos = contains(a: filterList, v: (filterType, title))
+    func removeFromFilterList(_ filterType: filterTypes, _ content: String){
+        let pos = contains(a: filterList, v: (filterType, content))
         if pos != -1{
             filterList.remove(at: pos)
         }
@@ -113,14 +113,14 @@ class FilterScreenVC: UIViewController {
 extension FilterScreenVC: FilterButtonDelegate{
     
     //Add, or remove the clicked button's type and title to filterList
-    func didClick(filterType: filterTypes, title: String, buttonDown: Bool){
+    func didClick(filterType: filterTypes, content: String, buttonDown: Bool){
         if buttonDown{
-            filterList.append((filterType: filterType, title: title))
+            filterList.append((filterType: filterType, content: content))
             //Additionally, turn off all filterButtons that are of type filterType - if you can only select
             //  one of its type at a time
-            unselectFilterButtons(filterType, title)
+            unselectFilterButtons(filterType, content)
         }else{
-            removeFromFilterList(filterType, title)
+            removeFromFilterList(filterType, content)
         }
         filterScreenDelegate?.filterList(filterList: filterList)
     }

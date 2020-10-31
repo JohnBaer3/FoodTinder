@@ -14,14 +14,16 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     var likedRestaurants:[String] = []
     var superLikedRestaurants:[String] = []
     private var collectionView: UICollectionView?
-    var filterList: [(filterType: filterTypes, title: String)] = []
+    var filterList: [(filterType: filterTypes, content: Any)] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appD = AppDelegate()
+        filterList.append((filterType: .location, content: [Double(appD.locVal?.latitude ?? 37.2638), Double(appD.locVal?.longitude ?? -122.0230)]))
+
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: view.frame.size.width,
@@ -45,7 +47,7 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         collectionView?.frame = view.bounds
     }
     
-    func yelpCall(parameters: [(filterType: filterTypes, title: String)]){
+    func yelpCall(parameters: [(filterType: filterTypes, content: Any)]){
         DispatchQueue.global(qos: .userInitiated).async{ [self] in
             yelpCaller.yelpCall(parameters:parameters, completion: {[weak self] result in
                 switch result{
@@ -65,7 +67,6 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
             })
         }
     }
-    
     
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -108,7 +109,7 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
 
 
 extension MainScreenVC: FilterScreenDelegate{
-    func filterList(filterList: [(filterType: filterTypes, title: String)]){
+    func filterList(filterList: [(filterType: filterTypes, content: String)]){
         self.filterList = filterList
     }
 }
