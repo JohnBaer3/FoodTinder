@@ -108,11 +108,10 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
     func didTapList() {
         //Pop out the VC and pass in the likedRestaurants and the superLikedRestaurants
         //Make each of the buttons in likedButtons to link to their Yelp page
-        
-        print("haha")
-        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LikedRestaurantsScreenVC") as! LikedRestaurantsScreenVC
+        nextViewController.likedRestaurants = likedRestaurants
+        nextViewController.superLikedRestaurants = superLikedRestaurants
         self.present(nextViewController, animated:true, completion:nil)
     }
 }
