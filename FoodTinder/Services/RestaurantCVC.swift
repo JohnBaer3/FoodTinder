@@ -12,6 +12,7 @@ import AlamofireImage
 protocol RestaurantCollectionViewCellDelegate: AnyObject{
     func didTapLike(with model: RestaurantListViewModel)
     func didTapSuperLike(with model: RestaurantListViewModel)
+    func didTapList()
 }
 
 
@@ -90,7 +91,8 @@ class RestaurantCVC: UICollectionViewCell {
         restaurantLabel.text = restaurantModel!.name
         likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchDown)
         superLikeButton.addTarget(self, action: #selector(superLikeButtonClicked), for: .touchDown)
-
+        listButton.addTarget(self, action: #selector(listButtonClicked), for: .touchDown)
+        
         layoutSubviews()
         
         contentView.addSubview(restaurantImage)
@@ -170,6 +172,9 @@ class RestaurantCVC: UICollectionViewCell {
     }
     
     
+    @objc private func listButtonClicked(){
+        restaurantCellDelegate?.didTapList()
+    }
     
 }
 
