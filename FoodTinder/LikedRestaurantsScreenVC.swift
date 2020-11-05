@@ -16,18 +16,20 @@ class LikedRestaurantsScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        let nib = UINib(nibName: "LikedFoodsTVC", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "LikedFoodsTVC")
     }
 }
 
 
 extension LikedRestaurantsScreenVC: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath as IndexPath)
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        performSegue(withIdentifier: "ClickedInPostSegue", sender: cell)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath as IndexPath)
+//        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+//        performSegue(withIdentifier: "ClickedInPostSegue", sender: cell)
+//    }
 }
 
 
@@ -39,10 +41,16 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCellTableViewCell",
-                                                     for: indexPath) as! PostCellTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
+                                                     for: indexPath) as! LikedFoodsTVC
         
-        return postCell
+        if indexPath.row < superLikedRestaurants.count{
+            cell.restaurantTitleLabel.text = superLikedRestaurants[indexPath.row]
+        }else{
+            cell.restaurantTitleLabel.text = likedRestaurants[indexPath.row - superLikedRestaurants.count]
+        }
+        
+        return cell
     }
     
 }
