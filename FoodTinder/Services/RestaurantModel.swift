@@ -15,14 +15,19 @@ struct Business: Codable{
     let id: String
     let name: String
     let imageUrl: URL
+    let rating: Float
     let distance: Double
+//    let coordinates: [String: [String: Float]]
 }
 
 struct RestaurantListViewModel{
     let name: String
     let imageUrl: URL
+    let rating: Float
     let distance: String
     let id: String
+    let latitude: Float
+    let longitude: Float
 }
 
 extension RestaurantListViewModel{
@@ -30,6 +35,9 @@ extension RestaurantListViewModel{
         self.name = business.name
         self.id = business.id
         self.imageUrl = business.imageUrl
+        self.rating = business.rating
         self.distance = "\(business.distance / 1609.344)"
+        self.latitude = 0.0 //business.coordinates["coordinates"]?["latitude"] ?? 0.0
+        self.longitude = 0.0 //business.coordinates["coordinates"]?["longitude"] ?? 0.0
     }
 }

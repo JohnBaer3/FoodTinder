@@ -11,8 +11,8 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         
     var yelpCaller: YelpCaller = YelpCaller()
     var restaurants = [RestaurantListViewModel]()
-    var likedRestaurants:[String] = []
-    var superLikedRestaurants:[String] = []
+    var likedRestaurants:[SuperOrLikedRestaurants] = []
+    var superLikedRestaurants:[SuperOrLikedRestaurants] = []
     private var collectionView: UICollectionView?
     var filterList: [(filterType: filterTypes, content: Any)] = []
 
@@ -96,12 +96,17 @@ extension MainScreenVC: UICollectionViewDataSource{
 
 extension MainScreenVC: RestaurantCollectionViewCellDelegate{
     func didTapLike(with model: RestaurantListViewModel){
-        likedRestaurants.append(model.name)
+        let likedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: false)
+        
+        likedRestaurants.append(likedRestaurant)
         print(likedRestaurants)
     }
     
     func didTapSuperLike(with model: RestaurantListViewModel){
-        superLikedRestaurants.append(model.name)
+        let superLikedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: true)
+        
+        
+        superLikedRestaurants.append(superLikedRestaurant)
         print("super!! ", superLikedRestaurants)
     }
     

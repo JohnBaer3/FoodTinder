@@ -11,8 +11,8 @@ class LikedRestaurantsScreenVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var likedRestaurants:[String] = []
-    var superLikedRestaurants:[String] = []
+    var likedRestaurants:[SuperOrLikedRestaurants] = []
+    var superLikedRestaurants:[SuperOrLikedRestaurants] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +46,9 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
                                                      for: indexPath) as! LikedFoodsTVC
         
         if indexPath.row < superLikedRestaurants.count{
-            cell.restaurantTitleLabel.text = superLikedRestaurants[indexPath.row]
+            cell.restaurantTitleLabel.text = superLikedRestaurants[indexPath.row].restaurantName
         }else{
-            cell.restaurantTitleLabel.text = likedRestaurants[indexPath.row - superLikedRestaurants.count]
+            cell.restaurantTitleLabel.text = likedRestaurants[indexPath.row - superLikedRestaurants.count].restaurantName
         }
         
         return cell
