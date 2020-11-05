@@ -10,13 +10,12 @@ import UIKit
 class LikedFoodsTVC: UITableViewCell {
 
     @IBOutlet weak var restaurantTitleLabel: UILabel!
+    @IBOutlet weak var restaurantImageView: UIImageView!
     
-    var restaurantImageView = UIImageView()
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(restaurantImageView)
+
         configureRestaurantTitle()
     }
     

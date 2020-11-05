@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class LikedRestaurantsScreenVC: UIViewController {
     
@@ -44,12 +45,17 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
                                                      for: indexPath) as! LikedFoodsTVC
-        
+        var tempArr: [SuperOrLikedRestaurants] = []
+        var pos = 0
         if indexPath.row < superLikedRestaurants.count{
-            cell.restaurantTitleLabel.text = superLikedRestaurants[indexPath.row].restaurantName
+            tempArr = superLikedRestaurants
+            pos = indexPath.row
         }else{
-            cell.restaurantTitleLabel.text = likedRestaurants[indexPath.row - superLikedRestaurants.count].restaurantName
+            tempArr = likedRestaurants
+            pos = indexPath.row - superLikedRestaurants.count
         }
+        cell.restaurantTitleLabel.text = tempArr[pos].restaurantName
+        cell.restaurantImageView.af.setImage(withURL: tempArr[pos].restaurantPic)
         
         return cell
     }
