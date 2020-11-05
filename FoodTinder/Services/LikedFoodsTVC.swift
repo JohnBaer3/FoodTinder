@@ -26,6 +26,7 @@ class LikedFoodsTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,6 +38,7 @@ class LikedFoodsTVC: UITableViewCell {
         //If font size is too big for the space, shrink it a little bit
         restaurantTitleLabel.numberOfLines = 0
         restaurantTitleLabel.adjustsFontSizeToFitWidth = true
+        restaurantTitleLabel.textColor = .white
     }
 
 }

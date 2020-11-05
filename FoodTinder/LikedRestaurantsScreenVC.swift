@@ -18,6 +18,7 @@ class LikedRestaurantsScreenVC: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .black
         let nib = UINib(nibName: "LikedFoodsTVC", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "LikedFoodsTVC")
     }
