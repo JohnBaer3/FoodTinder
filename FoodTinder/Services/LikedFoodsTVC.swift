@@ -41,4 +41,17 @@ class LikedFoodsTVC: UITableViewCell {
         restaurantTitleLabel.textColor = .white
     }
 
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set (newFrame) {
+            var frame = newFrame
+            let newWidth = frame.width
+            frame.size.width = newWidth
+            super.frame = frame
+
+        }
+    }
 }
