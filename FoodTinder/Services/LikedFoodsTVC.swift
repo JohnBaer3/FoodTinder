@@ -9,14 +9,27 @@ import UIKit
 
 class LikedFoodsTVC: UITableViewCell {
 
-    @IBOutlet weak var restaurantTitleLabel: UILabel!
     @IBOutlet weak var restaurantImageView: UIImageView!
+    @IBOutlet weak var restaurantTitleLabel: UILabel!
+    @IBOutlet weak var restaurantDistanceLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var likedOrSuperButton: UIButton!
+    
+    var imageURL: URL? = nil{
+        didSet{
+            print("hmm")
+            configureRestaurantImage()
+        }
+    }
+    
+    @IBAction func likedOrSuperButtonClicked(_ sender: Any) {
+    }
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         configureRestaurantTitle()
+        configureRestaurantImage()
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +43,6 @@ class LikedFoodsTVC: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     func configureRestaurantTitle(){
@@ -38,6 +50,10 @@ class LikedFoodsTVC: UITableViewCell {
         restaurantTitleLabel.numberOfLines = 0
         restaurantTitleLabel.adjustsFontSizeToFitWidth = true
         restaurantTitleLabel.textColor = .white
+    }
+    
+    func configureRestaurantImage(){
+        restaurantImageView.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
     }
 
     
@@ -49,8 +65,8 @@ class LikedFoodsTVC: UITableViewCell {
             var frame = newFrame
             let newWidth = frame.width
             frame.size.width = newWidth
+            frame.size.height = 200
             super.frame = frame
-
         }
     }
 }

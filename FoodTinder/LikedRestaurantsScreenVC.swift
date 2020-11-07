@@ -43,8 +43,6 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
-                                                     for: indexPath) as! LikedFoodsTVC
         var tempArr: [SuperOrLikedRestaurants] = []
         var pos = 0
         if indexPath.row < superLikedRestaurants.count{
@@ -54,8 +52,15 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
             tempArr = likedRestaurants
             pos = indexPath.row - superLikedRestaurants.count
         }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
+                                                 for: indexPath) as! LikedFoodsTVC
         cell.restaurantTitleLabel.text = tempArr[pos].restaurantName
+        cell.imageURL = tempArr[pos].restaurantPic
         cell.restaurantImageView.af.setImage(withURL: tempArr[pos].restaurantPic)
+        
+        tableView.reloadData()
+
         
         return cell
     }
