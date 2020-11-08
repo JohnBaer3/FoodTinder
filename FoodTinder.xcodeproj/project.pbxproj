@@ -157,11 +157,10 @@
 			isa = PBXGroup;
 			children = (
 				CB2431C025393C4500BB1CF7 /* Main.storyboard */,
+				CB7326E02557ADED00B27A72 /* Models */,
+				CB7326DF2557ADDE00B27A72 /* SmallerViews */,
 				CB34C9F025393C92003BB0C0 /* Services */,
-				CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */,
-				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
-				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
-				CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */,
+				CB7326E72557AE6C00B27A72 /* VCS */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
@@ -193,19 +192,44 @@
 		CB34C9F025393C92003BB0C0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CBB4564A253944C200BC9391 /* RestaurantModel.swift */,
 				CB34C9F125393CA4003BB0C0 /* NetworkService.swift */,
 				CB658B0B253B7CB3006950A3 /* YelpCaller.swift */,
-				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
-				CB52C4682546807500D9DC5D /* FilterButtons.swift */,
-				CB73269825493B2100B27A72 /* FilterLabelTitle.swift */,
-				CB52C4702546876100D9DC5D /* Enums.swift */,
-				CB7326C325539FED00B27A72 /* LikedFoodsTVC.swift */,
-				CB7326C425539FED00B27A72 /* LikedFoodsTVC.xib */,
-				CB7326D22553A2E600B27A72 /* SuperOrLikedRestaurants.swift */,
-				CB7326DA25579A9800B27A72 /* FirstCVC.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CB7326DF2557ADDE00B27A72 /* SmallerViews */ = {
+			isa = PBXGroup;
+			children = (
+				CB7326DA25579A9800B27A72 /* FirstCVC.swift */,
+				CB7326C325539FED00B27A72 /* LikedFoodsTVC.swift */,
+				CB52C4682546807500D9DC5D /* FilterButtons.swift */,
+				CB73269825493B2100B27A72 /* FilterLabelTitle.swift */,
+				CB7326C425539FED00B27A72 /* LikedFoodsTVC.xib */,
+				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
+			);
+			path = SmallerViews;
+			sourceTree = "<group>";
+		};
+		CB7326E02557ADED00B27A72 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CBB4564A253944C200BC9391 /* RestaurantModel.swift */,
+				CB7326D22553A2E600B27A72 /* SuperOrLikedRestaurants.swift */,
+				CB52C4702546876100D9DC5D /* Enums.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CB7326E72557AE6C00B27A72 /* VCS */ = {
+			isa = PBXGroup;
+			children = (
+				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
+				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
+				CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */,
+				CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */,
+			);
+			path = VCS;
 			sourceTree = "<group>";
 		};
 		FC41A7773CAA48C4233316B9 /* Pods */ = {
