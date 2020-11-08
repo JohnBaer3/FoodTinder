@@ -31,6 +31,7 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView?.register(FirstCVC.self, forCellWithReuseIdentifier: FirstCVC.identifier)
         collectionView?.register(RestaurantCVC.self, forCellWithReuseIdentifier: RestaurantCVC.identifier)
         collectionView?.isPagingEnabled = true
         collectionView?.dataSource = self
@@ -84,12 +85,18 @@ extension MainScreenVC: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCVC.identifier,
-                                                      for: indexPath) as! RestaurantCVC
-        cell.configure(with: restaurants[indexPath.row])
-        cell.restaurantCellDelegate = self
-        cell.tag = indexPath.row
-        return cell
+        if indexPath.row == 0{
+            let firstCell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstCVC.identifier,
+                                                          for: indexPath) as! FirstCVC
+            return firstCell
+        }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCVC.identifier,
+                                                          for: indexPath) as! RestaurantCVC
+            cell.configure(with: restaurants[indexPath.row])
+            cell.restaurantCellDelegate = self
+            cell.tag = indexPath.row
+            return cell
+        }
     }
 }
 

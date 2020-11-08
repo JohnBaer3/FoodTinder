@@ -84,19 +84,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f8c-wd-bks">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f8c-wd-bks">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Is2-Dj-6If"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="f8c-wd-bks" firstAttribute="top" secondItem="Kak-70-K5o" secondAttribute="top" id="1tb-s5-2dP"/>
-                            <constraint firstItem="f8c-wd-bks" firstAttribute="leading" secondItem="Is2-Dj-6If" secondAttribute="leading" id="9Ul-rb-SjT"/>
-                            <constraint firstItem="f8c-wd-bks" firstAttribute="trailing" secondItem="Is2-Dj-6If" secondAttribute="trailing" id="uKX-5q-jY9"/>
-                            <constraint firstAttribute="bottom" secondItem="f8c-wd-bks" secondAttribute="bottom" id="vlq-ta-ciS"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="f8c-wd-bks" id="HNX-48-lWd"/>
