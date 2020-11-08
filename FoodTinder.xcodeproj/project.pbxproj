@@ -202,8 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				CB7326DA25579A9800B27A72 /* FirstCVC.swift */,
-				CB7326C325539FED00B27A72 /* LikedFoodsTVC.swift */,
 				CB52C4682546807500D9DC5D /* FilterButtons.swift */,
+				CB7326C325539FED00B27A72 /* LikedFoodsTVC.swift */,
 				CB73269825493B2100B27A72 /* FilterLabelTitle.swift */,
 				CB7326C425539FED00B27A72 /* LikedFoodsTVC.xib */,
 				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,

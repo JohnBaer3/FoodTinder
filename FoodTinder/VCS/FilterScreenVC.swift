@@ -91,7 +91,7 @@ class FilterScreenVC: UIViewController {
     func unselectFilterButtons(_ filterType: filterTypes, _ content: String){
         if filterType != .categories{
             for button in filterButtons{
-                if button.filterType! == filterType && button.title! != title{
+                if button.filterType! == filterType && button.title! != content{
                     if button.buttonDown{
                         button.buttonSelectHighlightFlip()
                         removeFromFilterList(filterType, content)
