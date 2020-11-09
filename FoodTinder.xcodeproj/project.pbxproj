@@ -160,7 +160,7 @@
 				CB7326E02557ADED00B27A72 /* Models */,
 				CB7326DF2557ADDE00B27A72 /* SmallerViews */,
 				CB34C9F025393C92003BB0C0 /* Services */,
-				CB7326E72557AE6C00B27A72 /* VCS */,
+				CB7326E72557AE6C00B27A72 /* VCs */,
 				CB2431BA25393C4500BB1CF7 /* AppDelegate.swift */,
 				CB2431BC25393C4500BB1CF7 /* SceneDelegate.swift */,
 				CB2431C625393C4500BB1CF7 /* Assets.xcassets */,
@@ -221,7 +221,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CB7326E72557AE6C00B27A72 /* VCS */ = {
+		CB7326E72557AE6C00B27A72 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
 				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
@@ -229,7 +229,7 @@
 				CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */,
 				CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */,
 			);
-			path = VCS;
+			path = VCs;
 			sourceTree = "<group>";
 		};
 		FC41A7773CAA48C4233316B9 /* Pods */ = {

@@ -11,3 +11,8 @@ import Foundation
 enum filterTypes{
     case radius, foods, categories, price, location
 }
+
+
+enum Locations: Int{
+    case NYC
+}
