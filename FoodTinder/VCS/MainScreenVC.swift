@@ -9,12 +9,15 @@ import UIKit
 
 class MainScreenVC: UIViewController, UICollectionViewDelegate {
         
+    @IBOutlet var mainscreen: UIView!
     var yelpCaller: YelpCaller = YelpCaller()
     var restaurants = [RestaurantListViewModel]()
     var likedRestaurants:[SuperOrLikedRestaurants] = []
     var superLikedRestaurants:[SuperOrLikedRestaurants] = []
     private var collectionView: UICollectionView?
     var filterList: [(filterType: filterTypes, content: Any)] = []
+    var filterListChanged: Bool = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +43,33 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let popupView = NotifFilterListChangedPopupView(frame: CGRect(x: mainscreen.frame.width-50, y: 10, width: 100, height: 50))
+        popupView.alpha = 0.0
+        self.view.addSubview(popupView)
+
         yelpCall(parameters: filterList)
+        //If the filterList was changed, then make a small popup that indicates that the filterList was
+        //  modified
+        if filterListChanged{
+            showPopupAnimate(popupView)
+            filterListChanged = false
+        }
+    }
+    
+    func showPopupAnimate(_ view: UIView){
+        view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        view.alpha = 0.0
+        UIView.animate(withDuration: 1.0, animations: {
+            view.alpha = 1.0
+        }, completion: {_ in
+            self.disappearPopupAnimate(view)
+        });
+    }
+    
+    func disappearPopupAnimate(_ view: UIView){
+        UIView.animate(withDuration: 1.5, delay: 1.0, animations: {
+            view.alpha = 0.0
+        });
     }
     
     override func viewDidLayoutSubviews() {
@@ -128,8 +157,9 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
 
 
 extension MainScreenVC: FilterScreenDelegate{
-    func filterList(filterList: [(filterType: filterTypes, content: String)]){
+    func filterList(filterList: [(filterType: filterTypes, content: String)], filterListChanged: Bool){
         self.filterList = filterList
+        self.filterListChanged = filterListChanged
     }
 }
 

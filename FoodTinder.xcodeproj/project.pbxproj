@@ -22,6 +22,7 @@
 		CB34C9F225393CA4003BB0C0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34C9F125393CA4003BB0C0 /* NetworkService.swift */; };
 		CB52C4692546807500D9DC5D /* FilterButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52C4682546807500D9DC5D /* FilterButtons.swift */; };
 		CB52C4712546876100D9DC5D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB52C4702546876100D9DC5D /* Enums.swift */; };
+		CB5B48472559051B0004D871 /* NotifFilterListChangedPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5B48462559051B0004D871 /* NotifFilterListChangedPopupView.swift */; };
 		CB658B0C253B7CB3006950A3 /* YelpCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB658B0B253B7CB3006950A3 /* YelpCaller.swift */; };
 		CB73269925493B2100B27A72 /* FilterLabelTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73269825493B2100B27A72 /* FilterLabelTitle.swift */; };
 		CB7326A1254D39EA00B27A72 /* LikedRestaurantsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */; };
@@ -76,6 +77,7 @@
 		CB34C9F125393CA4003BB0C0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CB52C4682546807500D9DC5D /* FilterButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtons.swift; sourceTree = "<group>"; };
 		CB52C4702546876100D9DC5D /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		CB5B48462559051B0004D871 /* NotifFilterListChangedPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifFilterListChangedPopupView.swift; sourceTree = "<group>"; };
 		CB658B0B253B7CB3006950A3 /* YelpCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpCaller.swift; sourceTree = "<group>"; };
 		CB73269825493B2100B27A72 /* FilterLabelTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterLabelTitle.swift; sourceTree = "<group>"; };
 		CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedRestaurantsScreenVC.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				CB73269825493B2100B27A72 /* FilterLabelTitle.swift */,
 				CB7326C425539FED00B27A72 /* LikedFoodsTVC.xib */,
 				CBDA366C2543DA9E00E71F72 /* RestaurantCVC.swift */,
+				CB5B48462559051B0004D871 /* NotifFilterListChangedPopupView.swift */,
 			);
 			path = SmallerViews;
 			sourceTree = "<group>";
@@ -224,8 +227,8 @@
 		CB7326E72557AE6C00B27A72 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
 				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
+				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
 				CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */,
 				CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */,
 			);
@@ -491,6 +494,7 @@
 				CB2431C525393C4500BB1CF7 /* FoodTinder.xcdatamodeld in Sources */,
 				CB73269925493B2100B27A72 /* FilterLabelTitle.swift in Sources */,
 				CBDA366D2543DA9E00E71F72 /* RestaurantCVC.swift in Sources */,
+				CB5B48472559051B0004D871 /* NotifFilterListChangedPopupView.swift in Sources */,
 				CB2431BB25393C4500BB1CF7 /* AppDelegate.swift in Sources */,
 				CB7326A1254D39EA00B27A72 /* LikedRestaurantsScreenVC.swift in Sources */,
 				CB7326DB25579A9900B27A72 /* FirstCVC.swift in Sources */,

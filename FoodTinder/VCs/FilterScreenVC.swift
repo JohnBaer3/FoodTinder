@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol FilterScreenDelegate: AnyObject {
-     func filterList(filterList: [(filterType: filterTypes, content: String)])
+    func filterList(filterList: [(filterType: filterTypes, content: String)], filterListChanged: Bool)
 }
 
 
@@ -27,6 +27,7 @@ class FilterScreenVC: UIViewController {
     var filterButtons = [FilterButtons]()
     lazy var originalLeftXVal = Int(contentView.frame.width/9)
     var yPos: Int = 40
+    var filterListOnScreenAppear: [(filterType: filterTypes, content: String)] = []
     
     @IBOutlet weak var contentView: UIView!
     
@@ -39,6 +40,7 @@ class FilterScreenVC: UIViewController {
         addFilterSection("RADIUS", radiusFilterList, .radius)
         addFilterSection("PRICE", priceFilterList, .price)
     }
+    
     
     
     //Makes each of the Filter Sections
@@ -75,6 +77,11 @@ class FilterScreenVC: UIViewController {
         return xPos+xWidth+5
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        filterListOnScreenAppear = filterList
+    }
+    
+    
     //Helper function for identifiying position of tuples
     func contains(a:[(filterTypes, String)], v:(filterTypes, String)) -> Int {
         var pos = 0
@@ -107,6 +114,31 @@ class FilterScreenVC: UIViewController {
             filterList.remove(at: pos)
         }
     }
+    
+    //Checks to see if current filterList is different from filterListOnScreenAppear
+    func isFilterListChanged(_ filterList: [(filterType: filterTypes, content: String)]) -> Bool{
+        //Go through every element on filterList, and if it matches everything on filterListOnScreenAppear,
+        //  then return true, else false
+        if filterList.count == filterListOnScreenAppear.count{
+            for filterElement in filterList{
+                var found = false
+                for findElement in filterListOnScreenAppear{
+                    if findElement.content == filterElement.content{
+                        if findElement.filterType == filterElement.filterType{
+                            found = true
+                            break
+                        }
+                    }
+                }
+                if !found{
+                    return true
+                }
+            }
+            return false
+        }else{
+            return true
+        }
+    }
 }
 
 
@@ -122,7 +154,7 @@ extension FilterScreenVC: FilterButtonDelegate{
         }else{
             removeFromFilterList(filterType, content)
         }
-        filterScreenDelegate?.filterList(filterList: filterList)
+        filterScreenDelegate?.filterList(filterList: filterList, filterListChanged: isFilterListChanged(filterList))
     }
 }
 
