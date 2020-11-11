@@ -106,11 +106,11 @@ class YelpCaller{
                 if filter.content is String{
                     location = getLocationCoordinates((filter.content as! String))
                 }else{
-                    print(filter.content)
                     location = filter.content as! (Double, Double)
                 }
                 cleanedFilter.append((filterType: .location, content: location))
             case .foods:
+                print("hmmm ", filter.content)
                 cleanedFilter.append((filterType: .foods, content: (filter.content as! String).lowercased()))
             default:
                 print(filter.filterType)
@@ -119,6 +119,9 @@ class YelpCaller{
         categoriesString = categoriesString.lowercased()
         categoriesString = String(categoriesString.dropLast())
         cleanedFilter.append((filterType: .categories, content: categoriesString))
+        
+        print("cleaned: ", cleanedFilter)
+        
         return cleanedFilter
     }
     

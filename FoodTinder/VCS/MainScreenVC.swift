@@ -164,6 +164,9 @@ extension MainScreenVC: FilterScreenDelegate{
 }
 
 
+
+
+
 extension MainScreenVC: UIScrollViewDelegate{
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if let collectionViewPos = collectionView?.visibleCells.first{
