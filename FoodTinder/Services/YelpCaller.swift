@@ -110,7 +110,6 @@ class YelpCaller{
                 }
                 cleanedFilter.append((filterType: .location, content: location))
             case .foods:
-                print("hmmm ", filter.content)
                 cleanedFilter.append((filterType: .foods, content: (filter.content as! String).lowercased()))
             default:
                 print(filter.filterType)
@@ -120,7 +119,7 @@ class YelpCaller{
         categoriesString = String(categoriesString.dropLast())
         cleanedFilter.append((filterType: .categories, content: categoriesString))
         
-        print("cleaned: ", cleanedFilter)
+//        print("cleaned: ", cleanedFilter)
         
         return cleanedFilter
     }

@@ -189,7 +189,7 @@ class FilterScreenVC: UIViewController {
                     if filter.0 == .categories{
                         var found = false
                         for button in filterButtons{
-                            if filter.1 == button.title{
+                            if filter.1 == button.title!{
                                 found = true
                             }
                         }
