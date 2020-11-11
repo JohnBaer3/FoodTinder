@@ -177,9 +177,8 @@ class FilterScreenVC: UIViewController {
             }
         }else{
             //If Location or Foods, just remove the first element of type filterType
-            if filterType == .categories || filterType == .location{
+            if filterType == .foods || filterType == .location{
                 let pos = containsFilterTypeCheck(a: filterList, v: (filterType, ""))
-                print("")
                 if pos != -1{
                     filterList.remove(at: pos)
                 }
