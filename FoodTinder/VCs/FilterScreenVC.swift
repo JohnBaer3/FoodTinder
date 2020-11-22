@@ -95,21 +95,25 @@ class FilterScreenVC: UIViewController {
             contentView.addSubview(button)
             filterButtons.append(button)
 
-            let textField =  UITextField(frame: CGRect(x: xPos+15, y: yPos+15, width: 135, height: 20))
-            textField.placeholder = "Enter text here"
-            textField.font = UIFont.systemFont(ofSize: 20)
-            textField.autocorrectionType = UITextAutocorrectionType.no
-            textField.keyboardType = UIKeyboardType.default
-            textField.returnKeyType = UIReturnKeyType.done
-            textField.clearButtonMode = UITextField.ViewMode.whileEditing
-            textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-            textField.textColor = .black
-            textFields.append((filterType, textField, button))
-            contentView.addSubview(textField)
-        }else if filterType == .location{
-            
+            makeTextField(filterType, button, xPos+15, placeholder: "Enter text here: ")
         }
         yPos += 90
+    }
+    
+    
+    
+    func makeTextField(_ filterType: filterTypes, _ button: FilterButtons, _ xPos: Int, placeholder: String){
+        let textField =  UITextField(frame: CGRect(x: xPos, y: yPos+15, width: 135, height: 20))
+        textField.placeholder = placeholder
+        textField.font = UIFont.systemFont(ofSize: 20)
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        textField.textColor = .black
+        textFields.append((filterType, textField, button))
+        contentView.addSubview(textField)
     }
     
     
@@ -121,6 +125,9 @@ class FilterScreenVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         for textField in textFields{
             if textField.2.buttonDown{
+                //If textField is location, then I have to add both textField.1.text's at the same time to filterList
+                var lat: Double?
+                var long: Double?
                 filterList.append((filterType: textField.0, content: textField.1.text!))
                 filterScreenDelegate?.filterList(filterList: filterList, filterListChanged: isFilterListChanged(filterList))
             }
@@ -170,14 +177,14 @@ class FilterScreenVC: UIViewController {
     
     func removeFromFilterList(_ filterType: filterTypes, _ content: String){
         //Check for textField button
-        if content != "               "{
+        if !content.contains("  "){
             let pos = contains(a: filterList, v: (filterType, content))
             if pos != -1{
                 filterList.remove(at: pos)
             }
         }else{
             //If Location or Foods, just remove the first element of type filterType
-            if filterType == .foods || filterType == .location{
+            if filterType == .foods{
                 let pos = containsFilterTypeCheck(a: filterList, v: (filterType, ""))
                 if pos != -1{
                     filterList.remove(at: pos)
@@ -235,7 +242,7 @@ extension FilterScreenVC: FilterButtonDelegate{
     //Add, or remove the clicked button's type and title to filterList
     func didClick(filterType: filterTypes, content: String, buttonDown: Bool){
         if buttonDown{
-            if content != "               " {
+            if !content.contains("  "){
                 filterList.append((filterType: filterType, content: content))
             }
             //Additionally, turn off all filterButtons that are of type filterType - if you can only select
