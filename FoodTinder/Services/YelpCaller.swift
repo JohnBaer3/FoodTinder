@@ -173,8 +173,17 @@ class YelpCaller{
         case "Paris":
             locationCord = (48.8566, 2.3522)
         default:
-            locationCord = (34.0522, -118.2437)
+            locationCord = parseLocationCord(location)
         }
         return locationCord
+    }
+    
+    
+    func parseLocationCord(_ locationsCoords: String) -> (Double, Double){
+        let index = locationsCoords.firstIndex(of: ",")!
+        let latitude = String(locationsCoords[..<index])
+        let nextIndex = locationsCoords.index(after: index)
+        let longitude = String(locationsCoords[nextIndex...])
+        return (Double(latitude)!, Double(longitude)!)
     }
 }

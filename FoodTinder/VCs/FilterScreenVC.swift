@@ -130,11 +130,11 @@ class FilterScreenVC: UIViewController {
     //  On viewDidDisappear - if button is down, add the textfield content to the filterList
     // Pass the new filterList onto the delegation
     override func viewWillDisappear(_ animated: Bool) {
+        var lat: String?
+        var long: String
         for textField in textFields{
             if textField.2.buttonDown{
                 //If textField is location, then I have to add both textField.1.text's at the same time to filterList
-                var lat: String?
-                var long: String
                 if textField.2.filterType == .location{
                     if lat == nil{
                         if let latt = Double(textField.1.text!) {
@@ -218,7 +218,7 @@ class FilterScreenVC: UIViewController {
             }
         }else{
             //If Location or Foods, just remove the first element of type filterType
-            if filterType == .foods{
+            if filterType == .foods || filterType == .location {
                 let pos = containsFilterTypeCheck(a: filterList, v: (filterType, ""))
                 if pos != -1{
                     filterList.remove(at: pos)
