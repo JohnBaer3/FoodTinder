@@ -85,17 +85,24 @@ class FilterScreenVC: UIViewController {
     
     
     
-    
     func makeTextFieldButton(_ filterType: filterTypes){
         let xPos = originalLeftXVal
         yPos -= 30
         if filterType == .categories || filterType == .foods{
-            let button = FilterButtons(filterType: filterType, title: "               ", xPos: xPos, yPos: yPos)
+            let button = FilterButtons(filterType: filterType, title: "                  ", xPos: xPos, yPos: yPos)
             button.filterButtonDelegate = self
             contentView.addSubview(button)
             filterButtons.append(button)
 
             makeTextField(filterType, button, xPos+15, placeholder: "Enter text here: ")
+        }else if filterType == .location{
+            let button = FilterButtons(filterType: filterType, title: "                                  ", xPos: xPos, yPos: yPos)
+            button.filterButtonDelegate = self
+            contentView.addSubview(button)
+            filterButtons.append(button)
+
+            makeTextField(filterType, button, xPos+15, placeholder: "Latitude: ")
+            makeTextField(filterType, button, xPos+155, placeholder: "Longitude: ")
         }
         yPos += 90
     }
@@ -126,14 +133,41 @@ class FilterScreenVC: UIViewController {
         for textField in textFields{
             if textField.2.buttonDown{
                 //If textField is location, then I have to add both textField.1.text's at the same time to filterList
-                var lat: Double?
-                var long: Double?
-                filterList.append((filterType: textField.0, content: textField.1.text!))
+                var lat: String?
+                var long: String
+                if textField.2.filterType == .location{
+                    if lat == nil{
+                        if let latt = Double(textField.1.text!) {
+                            lat = String(latt)
+                        }else{
+                            popUpNotValidCoords()
+                            textField.1.text = ""
+                        }
+                    }else{
+                        if let longg = Double(textField.1.text!) {
+                            long = String(longg)
+                            var customLatLongString = ""
+                            customLatLongString += lat! + "," + long
+                            filterList.append((filterType: textField.0, content: customLatLongString))
+                        }else{
+                            popUpNotValidCoords()
+                            textField.1.text = ""
+                        }
+                    }
+                }else{
+                    filterList.append((filterType: textField.0, content: textField.1.text!))
+                }
                 filterScreenDelegate?.filterList(filterList: filterList, filterListChanged: isFilterListChanged(filterList))
             }
         }
     }
     
+    
+    func popUpNotValidCoords(){
+        let alert = UIAlertController(title: "Invalid Latitude/Longitude!", message: "Please enter a valid latitude and longitude", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     //Helper function for identifiying position of tuples
     func contains(a:[(filterTypes, String)], v:(filterTypes, String)) -> Int {
