@@ -53,11 +53,10 @@ class YelpCaller{
             switch result{
                 case .success(let response):
                     let root = try? self.jsonDecoder.decode(Root.self, from: response.data)
-                    //Handle this
+                    //Handle this when it returns nil
+                    
                     
                     completion(.success((root?.businesses.compactMap(RestaurantListViewModel.init))!))
-                    
-                    
                 case .failure(_):
                     print("error")
             }

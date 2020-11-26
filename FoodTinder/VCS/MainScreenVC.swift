@@ -24,7 +24,12 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         
         let appD = AppDelegate()
         filterList.append((filterType: .location, content: (Double(appD.locVal?.latitude ?? 37.2638), Double(appD.locVal?.longitude ?? -122.0230))))
-
+        
+        print(filterList)
+        
+        
+        
+        
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         let layout = UICollectionViewFlowLayout()
@@ -177,3 +182,10 @@ extension MainScreenVC: UIScrollViewDelegate{
     }
 }
 
+
+
+extension MainScreenVC: AppDelegateDelegate{
+    func currentLocation(currentLat: Double, currentLong: Double) {
+        
+    }
+}
