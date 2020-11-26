@@ -7,6 +7,8 @@
 
 import UIKit
 
+let currentLocNotificationKey = "co.johnbaer.currLoc"
+
 class MainScreenVC: UIViewController, UICollectionViewDelegate {
         
     @IBOutlet var mainscreen: UIView!
@@ -17,19 +19,15 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     private var collectionView: UICollectionView?
     var filterList: [(filterType: filterTypes, content: Any)] = []
     var filterListChanged: Bool = false
+    let locationChangeObserver = Notification.Name(currentLocNotificationKey)
+    var currentLat: Double? = nil
+    var currentLong: Double? = nil
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appD = AppDelegate()
-        filterList.append((filterType: .location, content: (Double(appD.locVal?.latitude ?? 37.2638), Double(appD.locVal?.longitude ?? -122.0230))))
-        
-        print(filterList)
-        
-        
-        
-        
+        createObserver()
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         let layout = UICollectionViewFlowLayout()
@@ -52,7 +50,6 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         popupView.alpha = 0.0
         self.view.addSubview(popupView)
 
-        yelpCall(parameters: filterList)
         //If the filterList was changed, then make a small popup that indicates that the filterList was
         //  modified
         if filterListChanged{
@@ -100,6 +97,23 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
                     break
                 }
             })
+        }
+    }
+    
+    
+    func createObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.locationChanged(_:)), name: locationChangeObserver, object: nil)
+    }
+    
+    @objc func locationChanged(_ notification: NSNotification){
+        if let currLocDict = notification.userInfo as NSDictionary? {
+            currentLat = (currLocDict["latitude"] as! Double)
+            currentLong = (currLocDict["longitude"] as! Double)
+            if currentLat == nil && currentLong == nil{
+                filterList.append((filterType: .location, content: (currentLat, currentLong)))
+                yelpCall(parameters: filterList)
+                print("hmmm ", filterList)
+            }
         }
     }
     
@@ -182,10 +196,3 @@ extension MainScreenVC: UIScrollViewDelegate{
     }
 }
 
-
-
-extension MainScreenVC: AppDelegateDelegate{
-    func currentLocation(currentLat: Double, currentLong: Double) {
-        
-    }
-}

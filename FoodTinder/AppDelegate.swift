@@ -10,18 +10,11 @@ import CoreData
 import MapKit
 import CoreLocation
 
-
-protocol AppDelegateDelegate: AnyObject {
-    func currentLocation(currentLat: Double, currentLong: Double)
-}
-
 @main
 
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let window = UIWindow()
-    var locVal: CLLocationCoordinate2D? = nil
-    weak var appDelegateDelegate: AppDelegateDelegate!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         locationAuth()
@@ -40,8 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        locVal = locValue
-        appDelegateDelegate?.currentLocation(currentLat: Double(locVal!.latitude), currentLong: Double(locVal!.longitude))
+        
+        let currentLoc = Notification.Name(currentLocNotificationKey)
+        let currLocDict: [String:Double] = ["latitude":locValue.latitude, "longitude":locValue.longitude]
+        NotificationCenter.default.post(name: currentLoc, object: nil, userInfo: currLocDict)
     }
     
     
