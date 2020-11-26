@@ -109,10 +109,9 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         if let currLocDict = notification.userInfo as NSDictionary? {
             currentLat = (currLocDict["latitude"] as! Double)
             currentLong = (currLocDict["longitude"] as! Double)
-            if currentLat == nil && currentLong == nil{
+            if restaurants.count == 0{
                 filterList.append((filterType: .location, content: (currentLat, currentLong)))
                 yelpCall(parameters: filterList)
-                print("hmmm ", filterList)
             }
         }
     }
