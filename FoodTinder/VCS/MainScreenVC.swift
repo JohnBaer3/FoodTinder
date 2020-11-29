@@ -27,6 +27,11 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Delete this when running on actual phone
+        filterList.append((filterType: .location, content: (currentLat ?? 37.77, currentLong ?? -122.4)))
+        yelpCall(parameters: filterList)
+        
+        
         createObserver()
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")

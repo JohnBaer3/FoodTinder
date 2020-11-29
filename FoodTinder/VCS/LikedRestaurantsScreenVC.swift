@@ -59,11 +59,8 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
         cell.imageURL = tempArr[pos].restaurantPic
         cell.restaurantImageView.af.setImage(withURL: tempArr[pos].restaurantPic)
         
-
-        print("hm")
         
         return cell
     }
-    
 }
 

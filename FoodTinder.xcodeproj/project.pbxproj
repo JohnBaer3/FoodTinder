@@ -227,10 +227,10 @@
 		CB7326E72557AE6C00B27A72 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */,
 				CB2431BE25393C4500BB1CF7 /* MainScreenVC.swift */,
 				CBDA369225465AFD00E71F72 /* FilterScreenVC.swift */,
 				CBDA36862546568400E71F72 /* HorizontalSwipeEffectController.swift */,
-				CB7326A0254D39E900B27A72 /* LikedRestaurantsScreenVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
