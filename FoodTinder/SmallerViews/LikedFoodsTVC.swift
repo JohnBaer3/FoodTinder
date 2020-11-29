@@ -9,13 +9,13 @@ import UIKit
 import AlamofireImage
 
 class LikedFoodsTVC: UITableViewCell {
+    static let identifier = "LikedFoodsTVC"
 
     @IBOutlet weak var restaurantImageView: UIImageView!
     @IBOutlet weak var restaurantTitleLabel: UILabel!
     @IBOutlet weak var restaurantDistanceLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var likedOrSuperButton: UIButton!
-    
     
     var imageURL: URL? = nil
     
@@ -41,21 +41,32 @@ class LikedFoodsTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(_ cellInfo: SuperOrLikedRestaurants){
+    func configure(_ cellInfo: SuperOrLikedRestaurants){   
         restaurantTitleLabel.text = cellInfo.restaurantName
         imageURL = cellInfo.restaurantPic
         restaurantImageView.af.setImage(withURL: cellInfo.restaurantPic)
-        
+
         let (imageWidth, imageHeight) = getURLImageSize(url: (imageURL! as CFURL))
-        let (correctImageWidth, correctImageHeight) = resizeImage(imageWidth, imageHeight)
-        restaurantImageView.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
+        let imageRatio = resizeImage(imageWidth, imageHeight)
+        restaurantImageView.frame = CGRect(x: 0,
+                                       y: 0,
+                                       width: imageWidth*imageRatio,
+                                       height: imageHeight*imageRatio
+                                )
+        restaurantImageView.frame = CGRect(x: (contentView.frame.size.width-imageWidth*imageRatio)/2,
+                                       y: (contentView.frame.size.height-imageHeight*imageRatio)/2,
+                                       width: imageWidth*imageRatio,
+                                       height: imageHeight*imageRatio
+                                )
     }
     
-    func resizeImage(_ imageWidth: CGFloat, _ imageHeight: CGFloat) -> (CGFloat, CGFloat){
-        let imageWidthRatio = imageWidth/contentView.frame.size.width
-        let imageHeightRatio = imageHeight/contentView.frame.size.height
+    func resizeImage(_ imageWidth: CGFloat, _ imageHeight: CGFloat) -> CGFloat {
+        let imageWidthRatio = imageWidth/100
+        let imageHeightRatio = imageHeight/100
+//        let imageWidthRatio = imageWidth/contentView.frame.size.width
+//        let imageHeightRatio = imageHeight/contentView.frame.size.height
         let imageRatio = imageWidthRatio > imageHeightRatio ? 1/imageWidthRatio : 1/imageHeightRatio
-        return (0.0, 0.0)
+        return imageRatio
     }
     
     

@@ -157,13 +157,11 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
     func didTapLike(with model: RestaurantListViewModel){
         let likedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: false)
         likedRestaurants.append(likedRestaurant)
-        print(likedRestaurants)
     }
     
     func didTapSuperLike(with model: RestaurantListViewModel){
         let superLikedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: true)
         superLikedRestaurants.append(superLikedRestaurant)
-        print("super!! ", superLikedRestaurants)
     }
     
     func didTapList() {

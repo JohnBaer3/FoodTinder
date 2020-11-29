@@ -19,8 +19,6 @@ class LikedRestaurantsScreenVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .black
-        let nib = UINib(nibName: "LikedFoodsTVC", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "LikedFoodsTVC")
     }
 }
 
@@ -59,4 +57,3 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
         return cell
     }
 }
-
