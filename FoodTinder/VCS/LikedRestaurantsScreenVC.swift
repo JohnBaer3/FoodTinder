@@ -13,6 +13,8 @@ class LikedRestaurantsScreenVC: UIViewController {
     
     var likedRestaurants:[SuperOrLikedRestaurants] = []
     var superLikedRestaurants:[SuperOrLikedRestaurants] = []
+    var currentLat: Double? = nil
+    var currentLong: Double? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +54,11 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
                                                  for: indexPath) as! LikedFoodsTVC
-        cell.configure(tempArr[pos])
-        
+        cell.configure(tempArr[pos], currentLat!, currentLong!)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 }

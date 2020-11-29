@@ -29,6 +29,8 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
         
         //Delete this when running on actual phone
         filterList.append((filterType: .location, content: (currentLat ?? 37.77, currentLong ?? -122.4)))
+        currentLat = 37.77
+        currentLong = -122.4
         yelpCall(parameters: filterList)
         
         
@@ -171,6 +173,8 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LikedRestaurantsScreenVC") as! LikedRestaurantsScreenVC
         nextViewController.likedRestaurants = likedRestaurants
         nextViewController.superLikedRestaurants = superLikedRestaurants
+        nextViewController.currentLat = currentLat
+        nextViewController.currentLong = currentLong
         self.present(nextViewController, animated:true, completion:nil)
     }
 }

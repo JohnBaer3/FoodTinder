@@ -123,11 +123,11 @@ class RestaurantCVC: UICollectionViewCell {
         let height = contentView.frame.size.height
         
         restaurantLabel.frame = CGRect(x: 50, y: 0, width: restaurantModel!.name.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 35)!) + 10, height: 80)
-        arrowButton.frame = CGRect(x: 30, y: Int(contentView.frame.size.height)/2-13, width: size-25, height: size-15)
+        arrowButton.frame = CGRect(x: 30, y: Int(height)/2-13, width: size-25, height: size-15)
         
-        likeButton.frame = CGRect(x: Int(width)-size-20, y: Int(contentView.frame.size.height)/2, width: size+10, height: size-10)
-        superLikeButton.frame = CGRect(x: Int(width)-size-15, y: Int(contentView.frame.size.height)/2+size+10, width: size-5, height: size-10)
-        listButton.frame = CGRect(x: Int(width)-size-10, y: Int(contentView.frame.size.height)/2+size*2+20, width: size-15, height: size)
+        likeButton.frame = CGRect(x: Int(width)-size-20, y: Int(height)/2, width: size+10, height: size-10)
+        superLikeButton.frame = CGRect(x: Int(width)-size-15, y: Int(height)/2+size+10, width: size-5, height: size-10)
+        listButton.frame = CGRect(x: Int(width)-size-10, y: Int(height)/2+size*2+20, width: size-15, height: size)
 
     }
     
