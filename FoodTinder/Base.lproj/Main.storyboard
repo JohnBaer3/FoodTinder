@@ -88,7 +88,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f8c-wd-bks">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LikedFoodsTVC" rowHeight="129" id="pih-OL-zos" customClass="LikedFoodsTVC" customModule="FoodTinder" customModuleProvider="target">
@@ -126,13 +126,12 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7y-GY-8BA">
                                                     <rect key="frame" x="332" y="43" width="62" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="heartFilled"/>
                                                     <connections>
                                                         <action selector="likedOrSuperButtonClicked:" destination="pih-OL-zos" eventType="touchUpInside" id="uCF-Jp-Od8"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="likedOrSuperButton" destination="z7y-GY-8BA" id="IKo-BP-zao"/>
@@ -150,7 +149,7 @@
                         <constraints>
                             <constraint firstItem="f8c-wd-bks" firstAttribute="leading" secondItem="Is2-Dj-6If" secondAttribute="leading" id="LyW-Ex-CNp"/>
                             <constraint firstItem="Is2-Dj-6If" firstAttribute="trailing" secondItem="f8c-wd-bks" secondAttribute="trailing" id="Ody-sf-DQq"/>
-                            <constraint firstItem="Is2-Dj-6If" firstAttribute="top" secondItem="f8c-wd-bks" secondAttribute="top" constant="44" id="hG6-fW-FBc"/>
+                            <constraint firstItem="Is2-Dj-6If" firstAttribute="top" secondItem="f8c-wd-bks" secondAttribute="top" id="hG6-fW-FBc"/>
                             <constraint firstItem="f8c-wd-bks" firstAttribute="bottom" secondItem="Is2-Dj-6If" secondAttribute="bottom" constant="34" id="uYj-Yt-T9i"/>
                         </constraints>
                     </view>
@@ -174,12 +173,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heartFilled" width="242" height="172"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -20,9 +20,26 @@ class LikedFoodsTVC: UITableViewCell {
     var imageURL: URL? = nil
     var currentLat: Double? = nil
     var currentLong: Double? = nil
+    var restaurantSuperLiked: Bool = false
+    var clickedLikeButton = true
     
     @IBAction func likedOrSuperButtonClicked(_ sender: Any) {
-        
+        clickedLikeButton = !clickedLikeButton
+        var systemImage: UIImage? = nil
+        if clickedLikeButton{
+            if restaurantSuperLiked{
+                systemImage = UIImage(imageLiteralResourceName: "superLikeFilled")
+            }else{
+                systemImage = UIImage(imageLiteralResourceName: "heartFilled")
+            }
+        }else{
+            if restaurantSuperLiked{
+                systemImage = UIImage(imageLiteralResourceName: "superLikeUnfilled")
+            }else{
+                systemImage = UIImage(imageLiteralResourceName: "heartUnfilled")
+            }
+        }
+        likedOrSuperButton.setBackgroundImage(systemImage, for: .normal)
     }
     
     
@@ -43,6 +60,7 @@ class LikedFoodsTVC: UITableViewCell {
         imageURL = cellInfo.restaurantPic
         currentLat = currentLatt
         currentLong = currentLongg
+        restaurantSuperLiked = cellInfo.restaurantSuperLiked
         
         restaurantImageView.af.setImage(withURL: cellInfo.restaurantPic)
         restaurantTitleLabel.text = cellInfo.restaurantName
@@ -57,30 +75,30 @@ class LikedFoodsTVC: UITableViewCell {
     
     
     func configureRestaurantImage(){
-        let (imageWidth, imageHeight) = getURLImageSize(url: (imageURL! as CFURL))
-        let imageRatio = resizeImage(imageWidth, imageHeight)
-        restaurantImageView.frame = CGRect(x: 70, y: 30, width: imageWidth*imageRatio, height: imageHeight*imageRatio)
+        restaurantImageView.frame = CGRect(x: 60, y: 20, width: 200, height: 110)
     }
     
-    func resizeImage(_ imageWidth: CGFloat, _ imageHeight: CGFloat) -> CGFloat {
-        let imageWidthRatio = imageWidth/contentView.frame.size.width
-        let imageHeightRatio = imageHeight/contentView.frame.size.height
-        let imageRatio = imageWidthRatio > imageHeightRatio ? 1/imageWidthRatio : 1/imageHeightRatio
-        return imageRatio
-    }
     
     
     func configureTexts(){
         //If font size is too big for the space, shrink it a little bit
-        restaurantTitleLabel.frame = CGRect(x: 220, y: 0, width: restaurantTitleLabel.text!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 40)!) + 80, height: 80)
-        restaurantDistanceLabel.frame = CGRect(x: 220, y: 40, width: restaurantDistanceLabel.text!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 30)!) + 10, height: 80)
-        restaurantRatingLabel.frame = CGRect(x: 220, y: 70, width: restaurantRatingLabel.text!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 30)!) + 10, height: 80)
+        restaurantTitleLabel.frame = CGRect(x: 260, y: 10, width: restaurantTitleLabel.text!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 40)!) + 80, height: 80)
+        restaurantDistanceLabel.frame = CGRect(x: 260, y: 40, width: restaurantDistanceLabel.text!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 30)!) + 10, height: 80)
+        restaurantRatingLabel.frame = CGRect(x: 260, y: 70, width: restaurantRatingLabel.text!.width(withConstrainedHeight: 20, font: UIFont(name: "Helvetica Neue", size: 30)!) + 10, height: 80)
     }
     
     
     func configureSelectButton(){
-        likedOrSuperButton.frame = CGRect(x: self.frame.width-50, y: 40, width: 40, height: 40)
+        likedOrSuperButton.frame = CGRect(x: self.frame.width-70, y: 40, width: 60, height: 40)
+        if restaurantSuperLiked{
+            let systemImage = UIImage(imageLiteralResourceName: "superLikeFilled")
+            likedOrSuperButton.setBackgroundImage(systemImage, for: .normal)
+        }else{
+            let systemImage = UIImage(imageLiteralResourceName: "heartFilled")
+            likedOrSuperButton.setBackgroundImage(systemImage, for: .normal)
+        }
     }
+    
     
     func findDistance(_ latitude: Double, _ longitude: Double) -> String{
         let latDiff = abs(currentLat! - latitude)
@@ -88,7 +106,7 @@ class LikedFoodsTVC: UITableViewCell {
         let diff = sqrt(pow(latDiff, 2) + pow(longDiff, 2))
         //1 degree = 69 miles. Also, the 1000s multiplication is to get a clean 3 digits for the Double
         let diffConversion = Double(round(1000*diff)/1000) * 69
-        return String(diffConversion) + "miles away"
+        return String(diffConversion) + " miles away"
     }
     
     
