@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class LikedFoodsTVC: UITableViewCell {
 
@@ -15,12 +16,8 @@ class LikedFoodsTVC: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var likedOrSuperButton: UIButton!
     
-    var imageURL: URL? = nil{
-        didSet{
-            print("hmm")
-            configureRestaurantImage()
-        }
-    }
+    
+    var imageURL: URL? = nil
     
     @IBAction func likedOrSuperButtonClicked(_ sender: Any) {
     }
@@ -29,7 +26,6 @@ class LikedFoodsTVC: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureRestaurantTitle()
-        configureRestaurantImage()
     }
     
     required init?(coder: NSCoder) {
@@ -45,6 +41,24 @@ class LikedFoodsTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func configure(_ cellInfo: SuperOrLikedRestaurants){
+        restaurantTitleLabel.text = cellInfo.restaurantName
+        imageURL = cellInfo.restaurantPic
+        restaurantImageView.af.setImage(withURL: cellInfo.restaurantPic)
+        
+        let (imageWidth, imageHeight) = getURLImageSize(url: (imageURL! as CFURL))
+        let (correctImageWidth, correctImageHeight) = resizeImage(imageWidth, imageHeight)
+        restaurantImageView.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
+    }
+    
+    func resizeImage(_ imageWidth: CGFloat, _ imageHeight: CGFloat) -> (CGFloat, CGFloat){
+        let imageWidthRatio = imageWidth/contentView.frame.size.width
+        let imageHeightRatio = imageHeight/contentView.frame.size.height
+        let imageRatio = imageWidthRatio > imageHeightRatio ? 1/imageWidthRatio : 1/imageHeightRatio
+        return (0.0, 0.0)
+    }
+    
+    
     func configureRestaurantTitle(){
         //If font size is too big for the space, shrink it a little bit
         restaurantTitleLabel.numberOfLines = 0
@@ -52,21 +66,16 @@ class LikedFoodsTVC: UITableViewCell {
         restaurantTitleLabel.textColor = .white
     }
     
-    func configureRestaurantImage(){
-        restaurantImageView.frame = CGRect(x: 10, y: 10, width: 50, height: 50)
-    }
-
     
-    override var frame: CGRect {
-        get {
-            return super.frame
+    func getURLImageSize(url: CFURL) -> (CGFloat, CGFloat){
+        if let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) {
+            if let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? {
+                let pixelWidth = imageProperties[kCGImagePropertyPixelWidth] as! CGFloat
+                let pixelHeight = imageProperties[kCGImagePropertyPixelHeight] as! CGFloat
+                return (pixelWidth, pixelHeight)
+            }
         }
-        set (newFrame) {
-            var frame = newFrame
-            let newWidth = frame.width
-            frame.size.width = newWidth
-            frame.size.height = 200
-            super.frame = frame
-        }
+        //Default if image size can't be found
+        return (300, 300)
     }
 }

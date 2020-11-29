@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AlamofireImage
 
 class LikedRestaurantsScreenVC: UIViewController {
     
@@ -55,10 +54,7 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
                                                  for: indexPath) as! LikedFoodsTVC
-        cell.restaurantTitleLabel.text = tempArr[pos].restaurantName
-        cell.imageURL = tempArr[pos].restaurantPic
-        cell.restaurantImageView.af.setImage(withURL: tempArr[pos].restaurantPic)
-        
+        cell.configure(tempArr[pos])
         
         return cell
     }
