@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class LikedRestaurantsScreenVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var restaurants_data: [NSManagedObject] = []
     var likedRestaurants:[SuperOrLikedRestaurants] = []
     var superLikedRestaurants:[SuperOrLikedRestaurants] = []
     var currentLat: Double? = nil
@@ -42,19 +44,24 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var tempArr: [SuperOrLikedRestaurants] = []
-        var pos = 0
-        if indexPath.row < superLikedRestaurants.count{
-            tempArr = superLikedRestaurants
-            pos = indexPath.row
+        let restaurant = restaurants_data[indexPath.row]
+        let restaurantModeled = SuperOrLikedRestaurants(
+            restaurantName: restaurant.value(forKey: "restaurant_name") as! String,
+            restaurantPic: URL(string: (restaurant.value(forKey: "restaurant_pic") as! String))!,
+            restaurantLatitude: (restaurant.value(forKey: "restaurant_latitude") as! Float),
+            restaurantLongitude: ((restaurant.value(forKey: "restaurant_longitude") as? Float)!),
+            restaurantRating: (restaurant.value(forKey: "restaurant_rating") as! Float),
+            restaurantSuperLiked: (restaurant.value(forKey: "restaurant_super_or_like") as! Bool))
+        
+        if restaurantModeled.restaurantSuperLiked == true{
+            superLikedRestaurants.append(restaurantModeled)
         }else{
-            tempArr = likedRestaurants
-            pos = indexPath.row - superLikedRestaurants.count
+            likedRestaurants.append(restaurantModeled)
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LikedFoodsTVC",
                                                  for: indexPath) as! LikedFoodsTVC
-        cell.configure(tempArr[pos], currentLat!, currentLong!)
+        cell.configure(restaurantModeled, currentLat!, currentLong!)
         return cell
     }
     

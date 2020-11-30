@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RestaurantData" representedClassName="RestaurantData" syncable="YES" codeGenerationType="class">
+        <attribute name="restaurant_latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="restaurant_longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="restaurant_name" optional="YES" attributeType="String"/>
+        <attribute name="restaurant_pic" optional="YES" attributeType="String"/>
+        <attribute name="restaurant_rating" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="restaurant_super_or_like" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="restaurant_yelp_URL" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="RestaurantData" positionX="-63" positionY="-18" width="128" height="148"/>
+    </elements>
 </model>
