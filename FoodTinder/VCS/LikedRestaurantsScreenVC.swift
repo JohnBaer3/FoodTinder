@@ -20,9 +20,24 @@ class LikedRestaurantsScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchRestaurantsFromCoreData()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .black
+        
+    }
+    
+    func fetchRestaurantsFromCoreData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "RestaurantData")
+        do {
+            restaurants_data = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }
 
@@ -40,11 +55,12 @@ extension LikedRestaurantsScreenVC: UITableViewDelegate{
 
 extension LikedRestaurantsScreenVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return superLikedRestaurants.count + likedRestaurants.count
+        return restaurants_data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let restaurant = restaurants_data[indexPath.row]
+                
         let restaurantModeled = SuperOrLikedRestaurants(
             restaurantName: restaurant.value(forKey: "restaurant_name") as! String,
             restaurantPic: URL(string: (restaurant.value(forKey: "restaurant_pic") as! String))!,

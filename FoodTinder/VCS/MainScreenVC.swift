@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 let currentLocNotificationKey = "co.johnbaer.currLoc"
 
@@ -158,12 +159,12 @@ extension MainScreenVC: UICollectionViewDataSource{
 extension MainScreenVC: RestaurantCollectionViewCellDelegate{
     func didTapLike(with model: RestaurantListViewModel){
         let likedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: false)
-        likedRestaurants.append(likedRestaurant)
+        save(restaurantData: likedRestaurant)
     }
     
     func didTapSuperLike(with model: RestaurantListViewModel){
         let superLikedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: true)
-        superLikedRestaurants.append(superLikedRestaurant)
+        save(restaurantData: superLikedRestaurant)
     }
     
     func didTapList() {
@@ -171,11 +172,30 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
         //Make each of the buttons in likedButtons to link to their Yelp page
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LikedRestaurantsScreenVC") as! LikedRestaurantsScreenVC
-        nextViewController.likedRestaurants = likedRestaurants
-        nextViewController.superLikedRestaurants = superLikedRestaurants
         nextViewController.currentLat = currentLat
         nextViewController.currentLong = currentLong
         self.present(nextViewController, animated:true, completion:nil)
+    }
+    
+    func save(restaurantData: SuperOrLikedRestaurants) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "RestaurantData", in: managedContext)!
+        let restaurant = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        restaurant.setValue(restaurantData.restaurantLatitude, forKeyPath: "restaurant_latitude")
+        restaurant.setValue(restaurantData.restaurantLongitude, forKeyPath: "restaurant_longitude")
+        restaurant.setValue(restaurantData.restaurantName, forKeyPath: "restaurant_name")
+        restaurant.setValue((restaurantData.restaurantPic.absoluteString), forKeyPath: "restaurant_pic")
+        restaurant.setValue(restaurantData.restaurantRating, forKeyPath: "restaurant_rating")
+        restaurant.setValue(restaurantData.restaurantSuperLiked, forKeyPath: "restaurant_super_or_like")
+        restaurant.setValue("restaurant yelp url ", forKeyPath: "restaurant_yelp_URL")
+    
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 }
 
