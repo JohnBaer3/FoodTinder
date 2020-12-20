@@ -27,6 +27,18 @@ class LikedRestaurantsScreenVC: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .black
         
+        setUpCloseButton()
+    }
+
+    func setUpCloseButton(){
+        let button = UIButton(frame: CGRect(x: 0, y: 10, width: 100, height: 50))
+        button.setTitle("close", for: .normal)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchDown)
+        self.view.addSubview(button)
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func fetchRestaurantsFromCoreData(){
@@ -43,11 +55,19 @@ class LikedRestaurantsScreenVC: UIViewController {
 
 
 extension LikedRestaurantsScreenVC: UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath as IndexPath)
-//        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-//        performSegue(withIdentifier: "ClickedInPostSegue", sender: cell)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath as IndexPath)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        if indexPath.row < superLikedRestaurants.count{
+            if let url = URL(string: superLikedRestaurants[indexPath.row].restaurantYelpURL) {
+                UIApplication.shared.open(url)
+            }
+        }else{
+            if let url = URL(string: likedRestaurants[indexPath.row - superLikedRestaurants.count].restaurantYelpURL) {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
 }
 
 
