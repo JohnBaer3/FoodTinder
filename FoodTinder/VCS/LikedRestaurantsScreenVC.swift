@@ -67,8 +67,9 @@ extension LikedRestaurantsScreenVC: UITableViewDataSource{
             restaurantLatitude: (restaurant.value(forKey: "restaurant_latitude") as! Float),
             restaurantLongitude: ((restaurant.value(forKey: "restaurant_longitude") as? Float)!),
             restaurantRating: (restaurant.value(forKey: "restaurant_rating") as! Float),
-            restaurantSuperLiked: (restaurant.value(forKey: "restaurant_super_or_like") as! Bool))
-        
+            restaurantSuperLiked: (restaurant.value(forKey: "restaurant_super_or_like") as! Bool),
+            restaurantYelpURL: (restaurant.value(forKey: "restaurant_yelp_URL") as! String))
+            
         if restaurantModeled.restaurantSuperLiked == true{
             superLikedRestaurants.append(restaurantModeled)
         }else{

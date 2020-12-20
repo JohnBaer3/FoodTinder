@@ -14,14 +14,15 @@ class SuperOrLikedRestaurants{
     let restaurantLongitude: Float
     let restaurantRating: Float
     let restaurantSuperLiked: Bool
-    
+    let restaurantYelpURL: String
     
     init(restaurantName: String,
          restaurantPic: URL,
          restaurantLatitude: Float,
          restaurantLongitude: Float,
          restaurantRating: Float,
-         restaurantSuperLiked: Bool
+         restaurantSuperLiked: Bool,
+         restaurantYelpURL: String
     ){
         self.restaurantName = restaurantName
         self.restaurantPic = restaurantPic
@@ -29,6 +30,7 @@ class SuperOrLikedRestaurants{
         self.restaurantLongitude = restaurantLongitude
         self.restaurantRating = restaurantRating
         self.restaurantSuperLiked = restaurantSuperLiked
+        self.restaurantYelpURL = restaurantYelpURL
     }
     
 }

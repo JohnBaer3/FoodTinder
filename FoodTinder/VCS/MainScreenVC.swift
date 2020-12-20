@@ -157,14 +157,22 @@ extension MainScreenVC: UICollectionViewDataSource{
 
 
 extension MainScreenVC: RestaurantCollectionViewCellDelegate{
-    func didTapLike(with model: RestaurantListViewModel){
-        let likedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: false)
-        save(restaurantData: likedRestaurant)
+    func didTapLike(with model: RestaurantListViewModel, selected: Bool){
+        let likedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: false, restaurantYelpURL: model.yelpURL)
+        if selected{
+            save(restaurantData: likedRestaurant)
+        }else{
+            unsave(restaurantData: likedRestaurant)
+        }
     }
     
-    func didTapSuperLike(with model: RestaurantListViewModel){
-        let superLikedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: true)
-        save(restaurantData: superLikedRestaurant)
+    func didTapSuperLike(with model: RestaurantListViewModel, selected: Bool){
+        let superLikedRestaurant = SuperOrLikedRestaurants(restaurantName: model.name, restaurantPic: model.imageUrl, restaurantLatitude: model.latitude, restaurantLongitude: model.longitude, restaurantRating: model.rating, restaurantSuperLiked: true, restaurantYelpURL: model.yelpURL)
+        if selected{
+            save(restaurantData: superLikedRestaurant)
+        }else{
+            unsave(restaurantData: superLikedRestaurant)
+        }
     }
     
     func didTapList() {
@@ -189,13 +197,44 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
         restaurant.setValue((restaurantData.restaurantPic.absoluteString), forKeyPath: "restaurant_pic")
         restaurant.setValue(restaurantData.restaurantRating, forKeyPath: "restaurant_rating")
         restaurant.setValue(restaurantData.restaurantSuperLiked, forKeyPath: "restaurant_super_or_like")
-        restaurant.setValue("restaurant yelp url ", forKeyPath: "restaurant_yelp_URL")
+        restaurant.setValue(restaurantData.restaurantYelpURL, forKeyPath: "restaurant_yelp_URL")
     
         do {
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+    }
+    
+    func unsave(restaurantData: SuperOrLikedRestaurants) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "RestaurantData")
+        var restaurants_data: [NSManagedObject] = []
+        
+        //Here, request the whole list
+        do {
+            restaurants_data = try managedContext.fetch(fetchRequest) as [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        //Then loop through them, and delete from CoreData any that match
+        for x in 0..<restaurants_data.count{
+            let restaurant = restaurants_data[x]
+            if (restaurant.value(forKey: "restaurant_name") as! String) == restaurantData.restaurantName &&
+                (restaurant.value(forKey: "restaurant_yelp_URL") as! String) == restaurantData.restaurantYelpURL{
+                
+            }
+        }
+        
+        
+//        restaurant.setValue(restaurantData.restaurantName, forKeyPath: "restaurant_name")
+//        restaurant.setValue("restaurant yelp url ", forKeyPath: "restaurant_yelp_URL")
+    
+        
+        //If any match, then delete them from CoreData
+        
     }
 }
 
@@ -207,7 +246,6 @@ extension MainScreenVC: FilterScreenDelegate{
         self.filterListChanged = filterListChanged
     }
 }
-
 
 
 

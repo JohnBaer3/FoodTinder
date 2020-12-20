@@ -10,8 +10,8 @@ import AlamofireImage
 
 
 protocol RestaurantCollectionViewCellDelegate: AnyObject{
-    func didTapLike(with model: RestaurantListViewModel)
-    func didTapSuperLike(with model: RestaurantListViewModel)
+    func didTapLike(with model: RestaurantListViewModel, selected: Bool)
+    func didTapSuperLike(with model: RestaurantListViewModel, selected: Bool)
     func didTapList()
 }
 
@@ -142,11 +142,12 @@ class RestaurantCVC: UICollectionViewCell {
     }
     
     
+    //First, account for deselecting
     @objc private func likeButtonClicked(){
-        guard let restaurantModel = restaurantModel else { return }
-        restaurantCellDelegate?.didTapLike(with: restaurantModel)
-        
         clickedLike = !clickedLike
+        guard let restaurantModel = restaurantModel else { return }
+        restaurantCellDelegate?.didTapLike(with: restaurantModel, selected: clickedLike)
+
         if clickedLike{
             let systemImage = UIImage(imageLiteralResourceName: "heartFilled")
             likeButton.setBackgroundImage(systemImage, for: .normal)
@@ -158,10 +159,10 @@ class RestaurantCVC: UICollectionViewCell {
     
 
     @objc private func superLikeButtonClicked(){
-        guard let restaurantModel = restaurantModel else { return }
-        restaurantCellDelegate?.didTapSuperLike(with: restaurantModel)
-        
         clickedSuperLike = !clickedSuperLike
+        guard let restaurantModel = restaurantModel else { return }
+        restaurantCellDelegate?.didTapSuperLike(with: restaurantModel, selected: clickedSuperLike)
+        
         if clickedSuperLike{
             let systemImage = UIImage(imageLiteralResourceName: "superLikeFilled")
             superLikeButton.setBackgroundImage(systemImage, for: .normal)
