@@ -222,19 +222,16 @@ extension MainScreenVC: RestaurantCollectionViewCellDelegate{
         //Then loop through them, and delete from CoreData any that match
         for x in 0..<restaurants_data.count{
             let restaurant = restaurants_data[x]
-            if (restaurant.value(forKey: "restaurant_name") as! String) == restaurantData.restaurantName &&
-                (restaurant.value(forKey: "restaurant_yelp_URL") as! String) == restaurantData.restaurantYelpURL{
-                
+            if (restaurant.value(forKey: "restaurant_name") as! String) == restaurantData.restaurantName{ //&&
+                //(restaurant.value(forKey: "restaurant_yelp_URL") as! String) == restaurantData.restaurantYelpURL{
+                managedContext.delete(restaurant)
             }
         }
-        
-        
-//        restaurant.setValue(restaurantData.restaurantName, forKeyPath: "restaurant_name")
-//        restaurant.setValue("restaurant yelp url ", forKeyPath: "restaurant_yelp_URL")
-    
-        
-        //If any match, then delete them from CoreData
-        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 }
 
