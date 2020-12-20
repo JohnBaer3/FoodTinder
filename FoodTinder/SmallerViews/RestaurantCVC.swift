@@ -151,6 +151,11 @@ class RestaurantCVC: UICollectionViewCell {
         if clickedLike{
             let systemImage = UIImage(imageLiteralResourceName: "heartFilled")
             likeButton.setBackgroundImage(systemImage, for: .normal)
+            
+            //Flip off the superLikedButton
+            if clickedSuperLike{
+                superLikeButtonClicked()
+            }
         }else{
             let systemImage = UIImage(imageLiteralResourceName: "heartUnfilled")
             likeButton.setBackgroundImage(systemImage, for: .normal)
@@ -166,6 +171,11 @@ class RestaurantCVC: UICollectionViewCell {
         if clickedSuperLike{
             let systemImage = UIImage(imageLiteralResourceName: "superLikeFilled")
             superLikeButton.setBackgroundImage(systemImage, for: .normal)
+            
+            //Flip off the likeButton
+            if clickedLike{
+                likeButtonClicked()
+            }
         }else{
             let systemImage = UIImage(imageLiteralResourceName: "superLikeUnfilled")
             superLikeButton.setBackgroundImage(systemImage, for: .normal)
