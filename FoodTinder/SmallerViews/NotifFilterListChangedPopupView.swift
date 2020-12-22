@@ -11,7 +11,7 @@ class NotifFilterListChangedPopupView: UIView {
    
     static let identifier = "NotifFilterListChangedPopupView"
 
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
@@ -36,11 +36,6 @@ class NotifFilterListChangedPopupView: UIView {
     }
     
     override func layoutSubviews(){
-        
-//        let width = Int(contentView.frame.size.width)
-//        let height = Int(contentView.frame.size.height)
-        
-//        titleLabel.frame = CGRect(x: width/2-titleFontWidth/2, y: height/2, width: titleFontWidth, height: 40)
         titleLabel.frame = CGRect(x: -1*sizeOfText(titleLabel.text!, 20), y: 0, width: sizeOfText(titleLabel.text!, 20)+30, height: 30)
 
     }

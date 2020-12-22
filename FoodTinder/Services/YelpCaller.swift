@@ -63,6 +63,7 @@ class YelpCaller{
                         print("oops!")
                     }
                 case .failure(_):
+                    print("oops!")
                     print("error")
             }
         }

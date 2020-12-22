@@ -23,17 +23,11 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     let locationChangeObserver = Notification.Name(currentLocNotificationKey)
     var currentLat: Double? = nil
     var currentLong: Double? = nil
+    var noResultsFromYelp: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Delete this when running on actual phone
-        filterList.append((filterType: .location, content: (currentLat ?? 37.77, currentLong ?? -122.4)))
-        currentLat = 37.77
-        currentLong = -122.4
-        yelpCall(parameters: filterList)
-        
         
         createObserver()
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
@@ -55,16 +49,38 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         makePopUpView()
+
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                case .restricted, .denied:
+                    filterList.append((filterType: .location, content: (currentLat ?? 40.7128, currentLong ?? -74.0060)))
+                    if currentLat == nil && currentLong == nil{
+                        currentLat = 40.7128
+                        currentLong = -74.0060
+                    }
+                    
+                    yelpCall(parameters: filterList)
+            default:
+                print("")
+            }
+        }
     }
     
     func makePopUpView(){
-        let popupView = NotifFilterListChangedPopupView(frame: CGRect(x: mainscreen.frame.width-50, y: 10, width: 100, height: 50))
-        popupView.alpha = 0.0
-        self.view.addSubview(popupView)
-
         //If the filterList was changed, then make a small popup that indicates that the filterList was modified
-        if filterListChanged{
+        if noResultsFromYelp{
+            let popupView = NotifFilterListChangedPopupView(frame: CGRect(x: mainscreen.frame.width-50, y: 10, width: 150, height: 50))
+            popupView.titleLabel.text = "No results found!"
+            popupView.alpha = 0.0
+            self.view.addSubview(popupView)
             showPopupAnimate(popupView)
+            noResultsFromYelp = false
+        }else if(filterListChanged && !noResultsFromYelp){
+            let popupView = NotifFilterListChangedPopupView(frame: CGRect(x: mainscreen.frame.width-50, y: 10, width: 100, height: 50))
+            popupView.alpha = 0.0
+            self.view.addSubview(popupView)
+            showPopupAnimate(popupView)
+            
             yelpCall(parameters: filterList)
             filterListChanged = false
         }
@@ -96,14 +112,19 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
             yelpCaller.yelpCall(parameters:parameters, completion: {[weak self] result in
                 switch result{
                 case .success(let data):
-                    //Get current cell's indexPath.row
-                    let pos = self!.collectionView?.visibleCells.first?.tag
-                    if pos != nil{
-                        self!.restaurants.removeLast(self!.restaurants.count - pos! - 1)
-                    }
-                    self?.restaurants.append(contentsOf: data)
-                    DispatchQueue.main.async { [weak self] in
-                        self!.collectionView?.reloadData()
+                    if data.count != 0{
+                        //Get current cell's indexPath.row
+                        let pos = self!.collectionView?.visibleCells.first?.tag
+                        if pos != nil{
+                            self!.restaurants.removeLast(self!.restaurants.count - pos! - 1)
+                        }
+                        self?.restaurants.append(contentsOf: data)
+                        DispatchQueue.main.async { [weak self] in
+                            self!.collectionView?.reloadData()
+                        }
+                    }else{
+                        noResultsFromYelp = true
+                        makePopUpView()
                     }
                 case .failure(_):
                     break
@@ -119,6 +140,7 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     
     @objc func locationChanged(_ notification: NSNotification){
         if let currLocDict = notification.userInfo as NSDictionary? {
+            print("hmmmmmmm")
             currentLat = (currLocDict["latitude"] as! Double)
             currentLong = (currLocDict["longitude"] as! Double)
             if restaurants.count == 0{

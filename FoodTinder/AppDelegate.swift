@@ -20,6 +20,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         locationAuth()
+        
+        
+        
+//        if CLLocationManager.locationServicesEnabled() {
+//            switch CLLocationManager.authorizationStatus() {
+//            case .restricted, .denied:
+//                let currentLoc = Notification.Name(currentLocNotificationKey)
+//                NotificationCenter.default.post(name: currentLoc, object: nil, userInfo: currLocDict)
+//                print("yay")
+//            case .authorizedAlways, .authorizedWhenInUse:
+//                let locValue: CLLocationCoordinate2D = locationManager.location!.coordinate
+//
+//                let currentLoc = Notification.Name(currentLocNotificationKey)
+//                let currLocDict: [String:Double] = ["latitude":locValue.latitude, "longitude":locValue.longitude]
+//                NotificationCenter.default.post(name: currentLoc, object: nil, userInfo: currLocDict)
+//            @unknown default:
+//                print("unknown")
+//            }
+//        }
+        
         return true
     }
 
@@ -34,8 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else {return}
+                
         let currentLoc = Notification.Name(currentLocNotificationKey)
         let currLocDict: [String:Double] = ["latitude":locValue.latitude, "longitude":locValue.longitude]
         NotificationCenter.default.post(name: currentLoc, object: nil, userInfo: currLocDict)
