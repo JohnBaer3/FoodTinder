@@ -14,9 +14,11 @@ import CoreLocation
 
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
+    let locationService = LocationService()
     let window = UIWindow()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         locationAuth()
         return true
     }
