@@ -48,6 +48,8 @@ class YelpCaller{
             }
         }
         
+        print(radius, " ", foodTerm, " ", lat, ",", long, " ", price, " ", categories)
+        
         //Probably needs to be put into another thread
         service.request(.search(term: foodTerm, lat: lat, long: long, categories: categories)){ (result) in
             switch result{
@@ -55,8 +57,11 @@ class YelpCaller{
                     let root = try? self.jsonDecoder.decode(Root.self, from: response.data)
                     //Handle this when it returns nil
                     
-                    
-                    completion(.success((root?.businesses.compactMap(RestaurantListViewModel.init))!))
+                    if root != nil{
+                        completion(.success((root?.businesses.compactMap(RestaurantListViewModel.init))!))
+                    }else{
+                        print("oops!")
+                    }
                 case .failure(_):
                     print("error")
             }
@@ -117,9 +122,6 @@ class YelpCaller{
         categoriesString = categoriesString.lowercased()
         categoriesString = String(categoriesString.dropLast())
         cleanedFilter.append((filterType: .categories, content: categoriesString))
-        
-//        print("cleaned: ", cleanedFilter)
-        
         return cleanedFilter
     }
     

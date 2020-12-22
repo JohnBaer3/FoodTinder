@@ -54,14 +54,18 @@ class MainScreenVC: UIViewController, UICollectionViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        makePopUpView()
+    }
+    
+    func makePopUpView(){
         let popupView = NotifFilterListChangedPopupView(frame: CGRect(x: mainscreen.frame.width-50, y: 10, width: 100, height: 50))
         popupView.alpha = 0.0
         self.view.addSubview(popupView)
 
-        //If the filterList was changed, then make a small popup that indicates that the filterList was
-        //  modified
+        //If the filterList was changed, then make a small popup that indicates that the filterList was modified
         if filterListChanged{
             showPopupAnimate(popupView)
+            yelpCall(parameters: filterList)
             filterListChanged = false
         }
     }
